@@ -30,7 +30,7 @@ export function SiteHeader() {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
-        buttonRef.current?.focus();
+        buttonRef.current?.focus({ preventScroll: true });
       }
     };
 
@@ -42,8 +42,9 @@ export function SiteHeader() {
 
     document.addEventListener("keydown", onKeyDown);
     window.addEventListener("resize", onResize);
+
     const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "clip";
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
@@ -55,7 +56,7 @@ export function SiteHeader() {
   useEffect(() => {
     if (!open || !panelRef.current) return;
     const firstLink = panelRef.current.querySelector<HTMLElement>("a");
-    firstLink?.focus();
+    firstLink?.focus({ preventScroll: true });
   }, [open]);
 
   const closeMenu = () => setOpen(false);

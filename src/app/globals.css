@@ -90,6 +90,7 @@
   body {
     margin: 0;
     max-width: 100%;
+    overflow-x: clip;
     background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
