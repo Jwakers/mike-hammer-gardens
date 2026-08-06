@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MhMonogram } from "@/components/MhMonogram";
+import { SiteHeader } from "@/components/SiteHeader";
 
 type FeaturedServiceItem = {
   name: string;
@@ -158,63 +159,7 @@ const fieldInput =
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <header
-        className={`${sectionShell} flex items-center justify-between gap-6 py-[18px] lg:py-[22px]`}
-      >
-        <Link
-          href="#top"
-          className="inline-flex items-center gap-2.5 lg:gap-3.5"
-          aria-label="Mike Hamer Gardens home"
-        >
-          <span className="hidden lg:inline-flex">
-            <MhMonogram width={36} height={36} />
-          </span>
-          <span className="inline-flex lg:hidden">
-            <MhMonogram width={22} height={22} />
-          </span>
-          <span className="font-display text-[17px] font-medium leading-none tracking-[-0.015em] text-foreground max-[560px]:text-[17px] sm:text-lg lg:text-xl lg:leading-[1.1]">
-            Mike Hamer Gardens
-          </span>
-        </Link>
-
-        <div className="flex items-center gap-3 max-[560px]:gap-3 lg:gap-9">
-          <nav
-            className="hidden items-center gap-7 font-sans text-sm leading-[22px] text-muted lg:flex"
-            aria-label="Primary"
-          >
-            <Link href="#top" className="font-medium text-foreground">
-              Home
-            </Link>
-            <Link href="#services" className="font-medium">
-              Services
-            </Link>
-            <Link href="#projects" className="font-medium">
-              Projects
-            </Link>
-            <Link href="#contact" className="font-medium">
-              Contact
-            </Link>
-          </nav>
-
-          <div className="flex items-center gap-3 lg:hidden">
-            <Link
-              href="#contact"
-              className="inline-flex items-center justify-center bg-primary px-4 py-2.5 font-sans text-sm font-bold leading-5 text-primary-foreground transition-colors hover:bg-[#162B22]"
-            >
-              Quote
-            </Link>
-            <span className="inline-flex flex-col gap-1.5" aria-hidden="true">
-              <span className="block h-0.5 w-[22px] bg-foreground" />
-              <span className="block h-0.5 w-[22px] bg-foreground" />
-              <span className="block h-0.5 w-3.5 bg-foreground" />
-            </span>
-          </div>
-
-          <Link href="#contact" className={`${primaryButton} max-lg:hidden`}>
-            Request a Quote
-          </Link>
-        </div>
-      </header>
+      <SiteHeader />
 
       <section
         id="top"
