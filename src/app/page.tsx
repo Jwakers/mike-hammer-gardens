@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { EnquiryForm } from "@/components/EnquiryForm";
 import { MhMonogram } from "@/components/MhMonogram";
 import { SiteHeader } from "@/components/SiteHeader";
 
@@ -108,7 +109,7 @@ const steps = [
     label: "Step 01",
     title: "Tell Mike about the work",
     description:
-      "Send an enquiry with a short description, postcode and photographs where possible.",
+      "Send an enquiry with a short description of the work and your postcode.",
   },
   {
     label: "Step 02",
@@ -153,12 +154,9 @@ const sectionHeading =
 
 const coverImage = "object-cover";
 
-const fieldInput =
-  "min-h-[52px] w-full border border-border bg-background px-3.5 text-foreground";
-
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen min-w-0">
       <SiteHeader />
 
       <section
@@ -315,18 +313,18 @@ export default function Home() {
           </Link>
         </div>
 
-        <article className="mb-8 grid grid-cols-1 gap-6 lg:mb-8 lg:grid-cols-[minmax(0,720px)_minmax(0,1fr)] lg:gap-10">
-          <div className="relative min-h-[240px] overflow-hidden lg:min-h-[440px]">
+        <article className="mb-8 flex flex-col gap-6 lg:mb-8 lg:flex-row lg:items-stretch lg:gap-10">
+          <div className="relative min-h-[240px] w-full min-w-0 flex-1 overflow-hidden lg:min-h-[440px]">
             <Image
               src={projects[0].image}
               alt={projects[0].title}
               fill
               className={coverImage}
               style={{ objectPosition: projects[0].imagePosition }}
-              sizes="(max-width: 900px) 100vw, 50vw"
+              sizes="(max-width: 900px) 100vw, 65vw"
             />
           </div>
-          <div className="flex flex-col justify-center gap-5 py-4">
+          <div className="flex w-full min-w-0 flex-col justify-center gap-5 py-4 lg:w-[clamp(280px,34%,400px)] lg:shrink-0">
             <div className="flex items-center justify-between gap-3 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-muted max-[560px]:text-[12px] max-[560px]:tracking-[0.1em]">
               <span className="text-accent">{projects[0].category}</span>
               <span>{projects[0].location}</span>
@@ -584,141 +582,7 @@ export default function Home() {
           </div>
         </div>
 
-        <form className="flex flex-col gap-5 border border-border bg-surface p-6 shadow-soft lg:p-9">
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <label className="flex flex-col gap-2">
-              <span className="font-sans text-sm font-semibold leading-5 text-foreground">
-                Full name
-              </span>
-              <input
-                type="text"
-                name="name"
-                placeholder="Your name"
-                className={fieldInput}
-              />
-            </label>
-            <label className="flex flex-col gap-2">
-              <span className="font-sans text-sm font-semibold leading-5 text-foreground">
-                Email address
-              </span>
-              <input
-                type="email"
-                name="email"
-                placeholder="you@example.com"
-                className={fieldInput}
-              />
-            </label>
-          </div>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <label className="flex flex-col gap-2">
-              <span className="font-sans text-sm font-semibold leading-5 text-foreground">
-                Phone number
-              </span>
-              <input
-                type="tel"
-                name="phone"
-                placeholder="07xxx xxx xxx"
-                className={fieldInput}
-              />
-            </label>
-            <label className="flex flex-col gap-2">
-              <span className="font-sans text-sm font-semibold leading-5 text-foreground">
-                Postcode
-              </span>
-              <input
-                type="text"
-                name="postcode"
-                placeholder="GL5"
-                className={fieldInput}
-              />
-            </label>
-          </div>
-          <p className="-mt-1 m-0 font-sans text-xs font-medium leading-[18px] text-muted">
-            Please provide at least one way for Mike to contact you.
-          </p>
-          <label className="flex flex-col gap-2">
-            <span className="font-sans text-sm font-semibold leading-5 text-foreground">
-              Service required
-            </span>
-            <select name="service" defaultValue="" className={fieldInput}>
-              <option value="" disabled>
-                Select a service
-              </option>
-              <option>Landscaping</option>
-              <option>Patio paving</option>
-              <option>Fencing</option>
-              <option>Garden maintenance</option>
-              <option>Garden clearance</option>
-              <option>Pressure washing</option>
-            </select>
-          </label>
-          <label className="flex flex-col gap-2">
-            <span className="font-sans text-sm font-semibold leading-5 text-foreground">
-              Project description
-            </span>
-            <textarea
-              name="description"
-              rows={5}
-              placeholder="Briefly describe the work you’d like done"
-              className="min-h-[110px] w-full resize-y border border-border bg-background px-3.5 py-3.5 text-foreground"
-            />
-          </label>
-          <label className="relative flex flex-col gap-2">
-            <span className="font-sans text-sm font-semibold leading-5 text-foreground">
-              Photos (optional)
-            </span>
-            <div className="flex w-full cursor-pointer gap-4 border-[1.5px] border-dashed border-primary bg-sage-wash px-[18px] py-4">
-              <div className="inline-flex size-10 shrink-0 items-center justify-center border border-border bg-surface text-primary">
-                <svg viewBox="0 0 18 18" aria-hidden="true" className="size-[18px]">
-                  <path
-                    d="M9 12.5V3.5M9 3.5L5.5 7M9 3.5L12.5 7"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                  <path
-                    d="M3 11.5v2c0 .8.7 1.5 1.5 1.5h9c.8 0 1.5-.7 1.5-1.5v-2"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                </svg>
-              </div>
-              <div>
-                <strong className="block font-sans text-sm font-semibold leading-5 text-foreground">
-                  Add garden photos
-                </strong>
-                <span className="mt-1 block font-sans text-xs leading-[18px] text-muted">
-                  Optional, but helpful when discussing your project · JPG, PNG or HEIC
-                </span>
-              </div>
-            </div>
-            <input
-              type="file"
-              name="photos"
-              accept=".jpg,.jpeg,.png,.heic"
-              multiple
-              className="absolute h-px w-px overflow-hidden whitespace-nowrap [clip-path:inset(50%)]"
-            />
-          </label>
-          <label className="flex flex-row items-start gap-2">
-            <input
-              type="checkbox"
-              name="consent"
-              className="mt-0.5 size-[18px] accent-primary"
-            />
-            <span className="font-sans text-sm font-normal leading-5 text-muted">
-              I agree to be contacted about this enquiry. Mike will only use these
-              details to respond to this request.
-            </span>
-          </label>
-          <button
-            type="submit"
-            className="inline-flex w-full cursor-pointer items-center justify-center border-0 bg-primary px-7 py-[18px] font-sans text-base font-bold leading-[22px] text-primary-foreground transition-colors hover:bg-[#162B22]"
-          >
-            Send Enquiry
-          </button>
-        </form>
+        <EnquiryForm />
       </section>
 
       <footer className={`${sectionShell} border-b-0 bg-foreground pt-16 pb-10`}>

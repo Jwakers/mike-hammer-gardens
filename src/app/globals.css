@@ -83,10 +83,13 @@
   html {
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   body {
     margin: 0;
+    max-width: 100%;
     background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
