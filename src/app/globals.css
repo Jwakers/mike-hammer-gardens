@@ -1,0 +1,65 @@
+:root {
+  --color-background: #f2f0eb;
+  --color-surface: #ffffff;
+  --color-foreground: #2c2c2a;
+  --color-muted: #4a5248;
+  --color-primary: #1f3a2e;
+  --color-primary-foreground: #f2f0eb;
+  --color-secondary: #a8b5a0;
+  --color-accent: #a66b4f;
+  --color-border: #d4d0c8;
+  --color-sage-wash: #e8ebe4;
+  --color-focus: #a66b4f;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.06em;
+  --tracking-label: 0.12em;
+  --leading-tight: 40px;
+  --leading-snug: 48px;
+  --leading-display: 64px;
+  --leading-body: 28px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --shadow-soft: 0 18px 40px rgba(31, 58, 46, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
