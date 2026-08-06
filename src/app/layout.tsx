@@ -5,12 +5,12 @@ import "./globals.css";
 
 const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-manrope",
 });
 
 const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-newsreader",
   weight: ["400", "500", "600"],
 });
 
@@ -34,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${manrope.variable} ${newsreader.variable}`}>{children}</body>
+    <html lang="en" className={`${manrope.variable} ${newsreader.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
