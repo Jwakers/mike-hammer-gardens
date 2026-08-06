@@ -13,7 +13,7 @@ type FeaturedServiceItem = {
 const featuredService = {
   eyebrow: "01 - Featured",
   title: "Landscaping and Transformations",
-  image: "/images/service-feature.jpg",
+  image: "/images/service-stone-path.jpg",
   items: [
     { name: "Landscaping", tag: "Core" },
     { name: "Patio paving", tag: "Core" },
@@ -52,24 +52,27 @@ const projects = [
     title: "Complete garden transformation",
     description:
       "A full garden refresh including planting, turf and improved outdoor structure for everyday family use.",
-    image: "/images/project-feature.jpg",
+    image: "/images/project-garden.jpg",
+    imagePosition: "72% 38%",
     featured: true,
   },
   {
-    category: "Patio paving",
+    category: "Stone paving",
     location: "Near Stroud",
-    title: "New patio and paving",
+    title: "Natural stone path",
     description:
-      "Natural stone paving laid for a durable outdoor seating area with clean finished edges.",
-    image: "/images/project-patio.jpg",
+      "Irregular flagstone paving laid through planting for a durable, natural garden route.",
+    image: "/images/project-stone-path.jpg",
+    imagePosition: "50% 40%",
   },
   {
     category: "Fencing",
     location: "Local area",
-    title: "Fencing and garden clearance",
+    title: "Gate, fencing and turf",
     description:
-      "Boundary fencing installed after clearance, leaving a tidy, secure and usable outdoor space.",
-    image: "/images/project-fencing.jpg",
+      "Boundary gate and fencing work finished alongside new turf and outdoor structure.",
+    image: "/images/project-gate.jpg",
+    imagePosition: "45% 40%",
   },
 ];
 
@@ -201,16 +204,17 @@ export default function Home() {
 
         <div className={styles.heroMedia}>
           <div className={styles.heroMeta}>
-            <span>Project · Patio &amp; planting</span>
+            <span>Project · Dry stone walling</span>
             <span>Stroud</span>
           </div>
           <div className={styles.heroImageWrap}>
             <Image
-              src="/images/hero.jpg"
-              alt="Freshly landscaped garden with a new lawn and patio"
+              src="/images/hero-stone-wall.jpg"
+              alt="Completed dry stone wall overlooking the Stroud valley"
               fill
               priority
               className={styles.coverImage}
+              style={{ objectPosition: "50% 35%" }}
               sizes="(max-width: 900px) 100vw, 48vw"
             />
           </div>
@@ -238,9 +242,10 @@ export default function Home() {
             <div className={styles.featureServiceImage}>
               <Image
                 src={featuredService.image}
-                alt="Contemporary landscaped garden project"
+                alt="Natural stone garden path through planting"
                 fill
                 className={styles.coverImage}
+                style={{ objectPosition: "50% 45%" }}
                 sizes="(max-width: 900px) 100vw, 36vw"
               />
             </div>
@@ -291,6 +296,7 @@ export default function Home() {
               alt={projects[0].title}
               fill
               className={styles.coverImage}
+              style={{ objectPosition: projects[0].imagePosition }}
               sizes="(max-width: 900px) 100vw, 50vw"
             />
           </div>
@@ -316,6 +322,7 @@ export default function Home() {
                   alt={project.title}
                   fill
                   className={styles.coverImage}
+                  style={{ objectPosition: project.imagePosition }}
                   sizes="(max-width: 900px) 100vw, 40vw"
                 />
               </div>
@@ -427,33 +434,21 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.mapPanel} aria-hidden="true">
-          <svg viewBox="0 0 420 240" className={styles.mapGraphic}>
-            <path
-              d="M20 180 C80 140, 120 200, 180 120 C220 70, 260 160, 320 90 C360 50, 390 100, 400 60"
-              fill="none"
-              stroke="#A8B5A0"
-              strokeWidth="1.5"
-              opacity="0.5"
+        <div className={styles.mapPanel}>
+          <div className={styles.mapImageWrap}>
+            <Image
+              src="/images/stroud-aerial.jpg"
+              alt="Aerial view of Stroud and the surrounding countryside"
+              fill
+              className={styles.coverImage}
+              style={{ objectPosition: "50% 45%" }}
+              sizes="(max-width: 900px) 100vw, 48vw"
             />
-            <path
-              d="M40 200 C100 160, 140 210, 200 140 C250 90, 280 170, 340 110 C370 80, 395 120, 410 90"
-              fill="none"
-              stroke="#A8B5A0"
-              opacity="0.35"
-            />
-            <path
-              d="M10 160 C70 120, 110 180, 170 100 C210 55, 250 145, 310 75 C350 40, 380 85, 405 45"
-              fill="none"
-              stroke="#A8B5A0"
-              opacity="0.25"
-            />
-            <circle cx="210" cy="120" r="8" fill="#A66B4F" />
-            <circle cx="210" cy="120" r="18" fill="none" stroke="#A66B4F" opacity="0.5" />
-            <text x="228" y="126" fill="#F2F0EB" fontSize="13" fontWeight="600">
-              Stroud
-            </text>
-          </svg>
+            <div className={styles.mapOverlay}>
+              <span className={styles.mapPin} />
+              <span className={styles.mapLabel}>Stroud</span>
+            </div>
+          </div>
         </div>
       </section>
 

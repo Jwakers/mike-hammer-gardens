@@ -698,18 +698,53 @@
 
 .mapPanel {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: stretch;
   min-height: 280px;
+  min-width: 0;
+  overflow: hidden;
 }
 
-.mapGraphic {
-  width: min(100%, 420px);
-  height: auto;
+.mapImageWrap {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  background: #1a2e24;
 }
 
-.mapGraphic text {
-  font-family: var(--font-sans), sans-serif;
+.mapOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 20px 24px;
+  background: linear-gradient(
+    90deg,
+    rgba(31, 58, 46, 0.55) 0%,
+    rgba(31, 58, 46, 0.15) 45%,
+    rgba(31, 58, 46, 0.25) 100%
+  );
+  pointer-events: none;
+}
+
+.mapPin {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+.mapLabel {
+  color: var(--color-primary-foreground);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 16px;
+  text-transform: uppercase;
 }
 
 .contactSection {
@@ -1103,7 +1138,11 @@
   }
 
   .mapPanel {
-    justify-content: flex-start;
+    min-height: 220px;
+  }
+
+  .mapImageWrap {
+    min-height: 220px;
   }
 
   .contactForm {
