@@ -44,9 +44,8 @@ export const siteConfig = {
       display: "07715 978631",
       international: "+447715978631",
     },
-    email: "mikehamergardens@gmail.com",
-    facebook:
-      "https://www.facebook.com/p/Mike-Hamer-Gardens-100078705781176/",
+    email: "jackwakeham82@gmail.com",
+    facebook: "https://www.facebook.com/p/Mike-Hamer-Gardens-100078705781176/",
     primaryLocation: {
       locality: "Stroud",
       region: "Gloucestershire",
@@ -76,6 +75,8 @@ export const siteConfig = {
   },
   form: {
     formspreeId: "xoeaqbdo",
+    // File uploads require a paid Formspree plan. Default off.
+    allowFileUploads: process.env.FORMSPREE_FILE_UPLOADS === "true",
   },
 } as const;
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm, ValidationError } from "@formspree/react";
-import { type FormEvent, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 
 const fieldInput =
   "min-h-[52px] w-full border border-border bg-background px-3.5 text-foreground";
@@ -12,12 +12,31 @@ const fieldError =
 type EnquiryFormProps = {
   formId: string;
   services: readonly string[];
+  allowFileUploads?: boolean;
 };
 
-export function EnquiryForm({ formId, services }: EnquiryFormProps) {
+export function EnquiryForm({
+  formId,
+  services,
+  allowFileUploads = false,
+}: EnquiryFormProps) {
   const [state, handleSubmit] = useForm(formId);
   const [contactError, setContactError] = useState("");
   const emailRef = useRef<HTMLInputElement>(null);
+  const formRegionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!state.succeeded) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    formRegionRef.current?.scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+      block: "start",
+    });
+  }, [state.succeeded]);
 
   function submitEnquiry(event: FormEvent<HTMLFormElement>) {
     const formData = new FormData(event.currentTarget);
@@ -38,6 +57,7 @@ export function EnquiryForm({ formId, services }: EnquiryFormProps) {
   if (state.succeeded) {
     return (
       <div
+        ref={formRegionRef}
         className="flex flex-col gap-4 border border-border bg-surface p-6 shadow-soft lg:p-9"
         role="status"
         aria-live="polite"
@@ -200,32 +220,35 @@ export function EnquiryForm({ formId, services }: EnquiryFormProps) {
           className={fieldError}
         />
       </label>
-      <label className="flex flex-col gap-2">
-        <span className="font-sans text-sm font-semibold leading-5 text-foreground">
-          Photographs <span className="font-normal text-muted">(optional)</span>
-        </span>
-        <input
-          type="file"
-          id="photos"
-          name="photos"
-          accept="image/jpeg,image/png,image/webp"
-          multiple
-          className="min-h-[52px] w-full border border-border bg-background px-3.5 py-3 text-foreground file:mr-4 file:border-0 file:bg-primary file:px-4 file:py-2 file:font-sans file:text-sm file:font-semibold file:text-primary-foreground"
-          aria-describedby="photos-help"
-        />
-        <span
-          id="photos-help"
-          className="font-sans text-xs font-medium leading-[18px] text-muted"
-        >
-          Add JPG, PNG or WebP images if they help explain the work.
-        </span>
-        <ValidationError
-          prefix="Photographs"
-          field="photos"
-          errors={state.errors}
-          className={fieldError}
-        />
-      </label>
+      {allowFileUploads ? (
+        <label className="flex flex-col gap-2">
+          <span className="font-sans text-sm font-semibold leading-5 text-foreground">
+            Photographs{" "}
+            <span className="font-normal text-muted">(optional)</span>
+          </span>
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            accept="image/jpeg,image/png,image/webp"
+            multiple
+            className="min-h-[52px] w-full border border-border bg-background px-3.5 py-3 text-foreground file:mr-4 file:border-0 file:bg-primary file:px-4 file:py-2 file:font-sans file:text-sm file:font-semibold file:text-primary-foreground"
+            aria-describedby="photos-help"
+          />
+          <span
+            id="photos-help"
+            className="font-sans text-xs font-medium leading-[18px] text-muted"
+          >
+            Add JPG, PNG or WebP images if they help explain the work.
+          </span>
+          <ValidationError
+            prefix="Photographs"
+            field="photos"
+            errors={state.errors}
+            className={fieldError}
+          />
+        </label>
+      ) : null}
       <label className="flex flex-col gap-2">
         <span className="font-sans text-sm font-semibold leading-5 text-foreground">
           Project description

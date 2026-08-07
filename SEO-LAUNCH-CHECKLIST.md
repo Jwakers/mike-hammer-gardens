@@ -13,7 +13,7 @@
 - [ ] Confirm whether a public business address exists and whether Mike explicitly permits publication. Never expose a private residential address by default.
 - [ ] Confirm the final logo and approve the generated Open Graph sharing image.
 - [ ] Provide a privacy-policy URL and confirm Formspree processing, photograph handling, retention, and deletion practices.
-- [ ] Confirm the Formspree form ID and configure server-side spam controls and accepted file types/limits in Formspree.
+- [ ] Confirm the Formspree form ID and configure server-side spam controls. If using a paid plan with file uploads, set `FORMSPREE_FILE_UPLOADS=true` and configure accepted file types/limits in Formspree.
 
 ## 2. Search verification
 

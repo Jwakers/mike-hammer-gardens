@@ -538,6 +538,7 @@ export default function Home() {
         <EnquiryForm
           formId={siteConfig.form.formspreeId}
           services={siteConfig.business.services}
+          allowFileUploads={siteConfig.form.allowFileUploads}
         />
       </section>
 
