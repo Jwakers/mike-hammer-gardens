@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm, ValidationError } from "@formspree/react";
+import { type FormEvent, useRef, useState } from "react";
 
 const fieldInput =
   "min-h-[52px] w-full border border-border bg-background px-3.5 text-foreground";
@@ -8,17 +9,45 @@ const fieldInput =
 const fieldError =
   "m-0 font-sans text-xs font-medium leading-[18px] text-red-700";
 
-export function EnquiryForm() {
-  const [state, handleSubmit] = useForm("xoeaqbdo");
+type EnquiryFormProps = {
+  formId: string;
+  services: readonly string[];
+};
+
+export function EnquiryForm({ formId, services }: EnquiryFormProps) {
+  const [state, handleSubmit] = useForm(formId);
+  const [contactError, setContactError] = useState("");
+  const emailRef = useRef<HTMLInputElement>(null);
+
+  function submitEnquiry(event: FormEvent<HTMLFormElement>) {
+    const formData = new FormData(event.currentTarget);
+    const email = String(formData.get("email") ?? "").trim();
+    const phone = String(formData.get("phone") ?? "").trim();
+
+    if (!email && !phone) {
+      event.preventDefault();
+      setContactError("Enter an email address or phone number so Mike can reply.");
+      emailRef.current?.focus();
+      return;
+    }
+
+    setContactError("");
+    handleSubmit(event);
+  }
 
   if (state.succeeded) {
     return (
-      <div className="flex flex-col gap-4 border border-border bg-surface p-6 shadow-soft lg:p-9">
+      <div
+        className="flex flex-col gap-4 border border-border bg-surface p-6 shadow-soft lg:p-9"
+        role="status"
+        aria-live="polite"
+      >
         <h3 className="m-0 font-display text-2xl font-medium leading-[30px] text-foreground">
           Enquiry sent
         </h3>
         <p className="m-0 font-sans text-[17px] leading-body text-muted">
-          Thanks for getting in touch. Mike will reply as soon as he can.
+          Thanks for getting in touch. Mike will use the contact details you
+          provided to respond to your enquiry.
         </p>
       </div>
     );
@@ -26,9 +55,16 @@ export function EnquiryForm() {
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={submitEnquiry}
       className="flex flex-col gap-5 border border-border bg-surface p-6 shadow-soft lg:p-9"
+      aria-busy={state.submitting}
     >
+      <div className="hidden" aria-hidden="true">
+        <label>
+          Leave this field empty
+          <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <label className="flex flex-col gap-2">
           <span className="font-sans text-sm font-semibold leading-5 text-foreground">
@@ -39,6 +75,7 @@ export function EnquiryForm() {
             id="name"
             name="name"
             required
+            autoComplete="name"
             placeholder="Your name"
             className={fieldInput}
           />
@@ -51,13 +88,20 @@ export function EnquiryForm() {
         </label>
         <label className="flex flex-col gap-2">
           <span className="font-sans text-sm font-semibold leading-5 text-foreground">
-            Email address
+            Email address{" "}
+            <span className="font-normal text-muted">
+              (email or phone required)
+            </span>
           </span>
           <input
+            ref={emailRef}
             type="email"
             id="email"
             name="email"
-            required
+            autoComplete="email"
+            aria-invalid={contactError ? true : undefined}
+            aria-describedby={`contact-help${contactError ? " contact-error" : ""}`}
+            onInput={() => setContactError("")}
             placeholder="you@example.com"
             className={fieldInput}
           />
@@ -72,12 +116,19 @@ export function EnquiryForm() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <label className="flex flex-col gap-2">
           <span className="font-sans text-sm font-semibold leading-5 text-foreground">
-            Phone number
+            Phone number{" "}
+            <span className="font-normal text-muted">
+              (email or phone required)
+            </span>
           </span>
           <input
             type="tel"
             id="phone"
             name="phone"
+            autoComplete="tel"
+            aria-invalid={contactError ? true : undefined}
+            aria-describedby={`contact-help${contactError ? " contact-error" : ""}`}
+            onInput={() => setContactError("")}
             placeholder="07xxx xxx xxx"
             className={fieldInput}
           />
@@ -97,6 +148,8 @@ export function EnquiryForm() {
             id="postcode"
             name="postcode"
             required
+            autoComplete="postal-code"
+            inputMode="text"
             placeholder="GL5"
             className={fieldInput}
           />
@@ -108,9 +161,18 @@ export function EnquiryForm() {
           />
         </label>
       </div>
-      <p className="-mt-1 m-0 font-sans text-xs font-medium leading-[18px] text-muted">
-        A phone number is helpful if Mike needs to discuss the work quickly.
+      <p
+        id="contact-help"
+        className="-mt-1 m-0 font-sans text-xs font-medium leading-[18px] text-muted"
+      >
+        Provide at least one contact method. A phone number can help Mike discuss
+        the work with you.
       </p>
+      {contactError ? (
+        <p id="contact-error" className={fieldError} role="alert">
+          {contactError}
+        </p>
+      ) : null}
       <label className="flex flex-col gap-2">
         <span className="font-sans text-sm font-semibold leading-5 text-foreground">
           Service required
@@ -125,16 +187,41 @@ export function EnquiryForm() {
           <option value="" disabled>
             Select a service
           </option>
-          <option value="Landscaping">Landscaping</option>
-          <option value="Patio paving">Patio paving</option>
-          <option value="Fencing">Fencing</option>
-          <option value="Garden maintenance">Garden maintenance</option>
-          <option value="Garden clearance">Garden clearance</option>
-          <option value="Pressure washing">Pressure washing</option>
+          {services.map((service) => (
+            <option key={service} value={service}>
+              {service}
+            </option>
+          ))}
         </select>
         <ValidationError
           prefix="Service"
           field="service"
+          errors={state.errors}
+          className={fieldError}
+        />
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="font-sans text-sm font-semibold leading-5 text-foreground">
+          Photographs <span className="font-normal text-muted">(optional)</span>
+        </span>
+        <input
+          type="file"
+          id="photos"
+          name="photos"
+          accept="image/jpeg,image/png,image/webp"
+          multiple
+          className="min-h-[52px] w-full border border-border bg-background px-3.5 py-3 text-foreground file:mr-4 file:border-0 file:bg-primary file:px-4 file:py-2 file:font-sans file:text-sm file:font-semibold file:text-primary-foreground"
+          aria-describedby="photos-help"
+        />
+        <span
+          id="photos-help"
+          className="font-sans text-xs font-medium leading-[18px] text-muted"
+        >
+          Add JPG, PNG or WebP images if they help explain the work.
+        </span>
+        <ValidationError
+          prefix="Photographs"
+          field="photos"
           errors={state.errors}
           className={fieldError}
         />
@@ -178,7 +265,9 @@ export function EnquiryForm() {
         errors={state.errors}
         className={fieldError}
       />
-      <ValidationError errors={state.errors} className={fieldError} />
+      <div aria-live="polite">
+        <ValidationError errors={state.errors} className={fieldError} />
+      </div>
       <button
         type="submit"
         disabled={state.submitting}

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { MhMonogram } from "@/components/MhMonogram";
 import { SiteHeader } from "@/components/SiteHeader";
+import { StructuredData } from "@/components/StructuredData";
+import { siteConfig } from "@/config/site";
 
 type FeaturedServiceItem = {
   name: string;
@@ -19,7 +21,7 @@ const featuredService = {
     { name: "Patio paving", tag: "Core" },
     { name: "Fencing", tag: "Core" },
     { name: "Turfing" },
-    { name: "Seeding" },
+    { name: "Grass seeding" },
   ] satisfies FeaturedServiceItem[],
 };
 
@@ -31,7 +33,7 @@ const supportingServices = [
       "Grass cutting",
       "Hedge cutting",
       "Garden clearance",
-      "Seasonal tidy-ups",
+      "Seasonal garden maintenance",
     ],
   },
   {
@@ -48,58 +50,35 @@ const supportingServices = [
 const projects = [
   {
     category: "Landscaping",
-    location: "Stroud",
-    title: "Complete garden transformation",
+    title: "Turf and paved garden layout",
     description:
-      "A full garden refresh including planting, turf and improved outdoor structure for everyday family use.",
+      "A garden layout combining turf, paved areas, steps and established planting.",
     image: "/images/project-garden.jpg",
+    alt: "Garden with turf, a paved seating area and steps",
     imagePosition: "72% 38%",
-    featured: true,
   },
   {
     category: "Stone paving",
-    location: "Near Stroud",
     title: "Natural stone path",
     description:
-      "Irregular flagstone paving laid through planting for a durable, natural garden route.",
+      "A natural stone path set between planted beds to create a practical garden route.",
     image: "/images/project-stone-path.jpg",
+    alt: "Natural stone path between planted garden beds",
     imagePosition: "50% 40%",
   },
   {
     category: "Fencing",
-    location: "Local area",
-    title: "Gate, fencing and turf",
+    title: "Garden gate, lawn and paving",
     description:
-      "Boundary gate and fencing work finished alongside new turf and outdoor structure.",
+      "A metal garden gate, lawn and paved seating area brought together in one outdoor space.",
     image: "/images/project-gate.jpg",
+    alt: "Metal garden gate beside a lawn and paved area",
     imagePosition: "45% 40%",
   },
 ];
 
-const testimonials = [
-  {
-    quote:
-      "Mike completely transformed our garden. He was reliable, tidy and kept us informed throughout the project. The finished result was exactly what we had hoped for.",
-    name: "Customer Name",
-    detail: "Stroud - Landscaping and patio",
-    featured: true,
-  },
-  {
-    quote:
-      "From the first visit through to the completed work, everything was handled professionally. Mike arrived when agreed and left the garden clean and tidy.",
-    name: "Customer Name",
-    detail: "Stonehouse - Fencing and garden clearance",
-  },
-  {
-    quote:
-      "We have used Mike for both maintenance and larger garden improvements. The work is always completed to a high standard and communication is excellent.",
-    name: "Customer Name",
-    detail: "Local area - Garden maintenance",
-  },
-];
-
 const aboutPoints = [
-  "13 years of experience",
+  "13 years of industry experience",
   "Direct communication with Mike",
   "Tidy and dependable workmanship",
 ];
@@ -125,15 +104,6 @@ const steps = [
   },
 ];
 
-const surroundingAreas = [
-  "Stroud",
-  "Stonehouse",
-  "Nailsworth",
-  "Minchinhampton",
-  "Painswick",
-  "Chalford",
-];
-
 const sectionShell =
   "border-b border-border px-5 max-[560px]:px-5 lg:px-12 xl:px-20";
 
@@ -156,8 +126,16 @@ const coverImage = "object-cover";
 
 export default function Home() {
   return (
-    <main className="min-h-screen min-w-0">
+    <>
+      <a
+        href="#main-content"
+        className="fixed top-3 left-3 z-[100] -translate-y-24 bg-primary px-4 py-3 font-sans text-sm font-bold text-primary-foreground transition-transform focus:translate-y-0 motion-reduce:transition-none"
+      >
+        Skip to main content
+      </a>
       <SiteHeader />
+      <main id="main-content" tabIndex={-1} className="min-h-screen min-w-0">
+        <StructuredData />
 
       <section
         id="top"
@@ -165,7 +143,7 @@ export default function Home() {
       >
         <div className="flex flex-col justify-center gap-5 lg:gap-7">
           <div className="flex items-center gap-2.5 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-accent max-[560px]:text-[12px] max-[560px]:tracking-[0.1em]">
-            <span className="h-px w-6 shrink-0 bg-accent" />
+            <span className="h-px w-6 shrink-0 bg-accent" aria-hidden="true" />
             <span>Stroud · Gloucestershire</span>
           </div>
           <h1 className="m-0 font-display text-[34px] font-medium leading-[1.15] tracking-tight text-foreground lg:text-[clamp(48px,6vw,56px)] lg:leading-[1.1]">
@@ -186,7 +164,7 @@ export default function Home() {
           </div>
           <div className="w-fit border border-border bg-surface px-[18px] py-4">
             <strong className="mb-1.5 block font-display text-xl font-medium leading-body tracking-[-0.01em] text-foreground">
-              13 years&apos; experience
+              {siteConfig.business.experienceYears} years&apos; industry experience
             </strong>
             <span className="font-sans text-xs font-medium leading-[18px] text-muted">
               Landscaping, maintenance and garden improvements
@@ -198,19 +176,18 @@ export default function Home() {
         </div>
 
         <div className="order-first flex min-w-0 flex-col gap-3 max-[560px]:order-none lg:order-none">
-          <div className="hidden items-center justify-between gap-3 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-muted lg:flex">
+          <div className="hidden items-center gap-3 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-muted lg:flex">
             <span>Project · Dry stone walling</span>
-            <span>Stroud</span>
           </div>
           <div className="relative min-h-[240px] overflow-hidden lg:min-h-[480px]">
             <Image
               src="/images/hero-stone-wall.jpg"
-              alt="Completed dry stone wall overlooking the Stroud valley"
+              alt="Dry stone garden wall with a valley view"
               fill
               priority
               className={coverImage}
               style={{ objectPosition: "50% 35%" }}
-              sizes="(max-width: 900px) 100vw, 48vw"
+              sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 899px) calc(100vw - 96px), 48vw"
             />
           </div>
         </div>
@@ -229,7 +206,7 @@ export default function Home() {
             </p>
           </div>
           <Link href="#contact" className={textLink}>
-            Explore All Services
+            Request a quotation
           </Link>
         </div>
 
@@ -304,12 +281,12 @@ export default function Home() {
           <div className="max-w-[720px]">
             <h2 className={sectionHeading}>Recent garden projects</h2>
             <p className={`${bodyMuted} mt-4`}>
-              Explore landscaping, paving, fencing and maintenance work completed
-              for homeowners across the local area.
+              A selection of landscaping, paving, fencing and garden improvement
+              work.
             </p>
           </div>
           <Link href="#contact" className={textLink}>
-            View All Projects
+            Discuss your project
           </Link>
         </div>
 
@@ -317,7 +294,7 @@ export default function Home() {
           <div className="relative min-h-[240px] w-full min-w-0 flex-1 overflow-hidden lg:min-h-[440px]">
             <Image
               src={projects[0].image}
-              alt={projects[0].title}
+              alt={projects[0].alt}
               fill
               className={coverImage}
               style={{ objectPosition: projects[0].imagePosition }}
@@ -327,7 +304,6 @@ export default function Home() {
           <div className="flex w-full min-w-0 flex-col justify-center gap-5 py-4 lg:w-[clamp(280px,34%,400px)] lg:shrink-0">
             <div className="flex items-center justify-between gap-3 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-muted max-[560px]:text-[12px] max-[560px]:tracking-[0.1em]">
               <span className="text-accent">{projects[0].category}</span>
-              <span>{projects[0].location}</span>
             </div>
             <h3 className="m-0 font-display text-2xl font-medium leading-[38px] text-foreground lg:text-[32px]">
               {projects[0].title}
@@ -336,7 +312,7 @@ export default function Home() {
               {projects[0].description}
             </p>
             <Link href="#contact" className={textLink}>
-              View Project
+              Enquire about similar work
             </Link>
           </div>
         </article>
@@ -347,16 +323,15 @@ export default function Home() {
               <div className="relative min-h-[240px] overflow-hidden lg:min-h-[280px]">
                 <Image
                   src={project.image}
-                  alt={project.title}
+                  alt={project.alt}
                   fill
                   className={coverImage}
                   style={{ objectPosition: project.imagePosition }}
                   sizes="(max-width: 900px) 100vw, 40vw"
                 />
               </div>
-              <div className="flex items-center justify-between gap-3 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-muted max-[560px]:text-[12px] max-[560px]:tracking-[0.1em]">
+              <div className="flex items-center gap-3 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-muted max-[560px]:text-[12px] max-[560px]:tracking-[0.1em]">
                 <span className="text-accent">{project.category}</span>
-                <span>{project.location}</span>
               </div>
               <h3 className="m-0 font-display text-2xl font-medium leading-[30px] text-foreground">
                 {project.title}
@@ -365,67 +340,41 @@ export default function Home() {
                 {project.description}
               </p>
               <Link href="#contact" className={textLink}>
-                View Project
+                Enquire about similar work
               </Link>
             </article>
           ))}
         </div>
       </section>
 
-      <section className={`${sectionShell} py-[72px] lg:py-24`}>
+      <section
+        id="testimonials"
+        className={`${sectionShell} py-[72px] lg:py-24`}
+      >
         <div className="mb-12 max-w-[720px]">
-          <h2 className={sectionHeading}>Trusted by local homeowners</h2>
+          <h2 className={sectionHeading}>Customer testimonials</h2>
           <p className={`${bodyMuted} mt-4`}>
-            Reliable workmanship, clear communication and gardens left looking
-            their best.
+            Genuine customer feedback will be published here once the wording
+            and attribution have been approved.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 border-t border-border lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
-          <article className="flex flex-col gap-7 border-border pt-10 pr-0 lg:border-r lg:pr-10">
-            <p className="m-0 font-display text-[22px] leading-[1.4] tracking-[-0.01em] text-foreground lg:text-[26px] lg:leading-[38px]">
-              &ldquo;{testimonials[0].quote}&rdquo;
-            </p>
-            <div>
-              <strong className="mb-1.5 block font-sans text-sm font-semibold leading-5 text-foreground">
-                {testimonials[0].name}
-              </strong>
-              <span className="font-sans text-base leading-[26px] text-muted">
-                {testimonials[0].detail}
-              </span>
-            </div>
-          </article>
-
-          <div className="grid lg:grid-rows-2">
-            {testimonials.slice(1).map((testimonial) => (
-              <article
-                key={testimonial.detail}
-                className="flex flex-col gap-5 border-t border-border pt-10 pb-9 pl-0 first:border-t lg:border-t-0 lg:border-b lg:border-border lg:pl-10 lg:first:border-b lg:last:border-b-0"
-              >
-                <p className="m-0 font-display text-lg leading-[1.5] tracking-[-0.01em] text-foreground lg:text-[20px] lg:leading-[30px]">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-                <div>
-                  <strong className="mb-1.5 block font-sans text-sm font-semibold leading-5 text-foreground">
-                    {testimonial.name}
-                  </strong>
-                  <span className="font-sans text-base leading-[26px] text-muted">
-                    {testimonial.detail}
-                  </span>
-                </div>
-              </article>
-            ))}
-          </div>
+        <div className="border-t border-border pt-10">
+          <p className="m-0 max-w-[760px] font-display text-[22px] leading-[1.4] tracking-[-0.01em] text-foreground lg:text-[26px] lg:leading-[38px]">
+            Testimonials are intentionally not shown until Mike has supplied
+            genuine customer comments and permission for their attribution.
+          </p>
         </div>
       </section>
 
       <section
+        id="about"
         className={`${sectionShell} grid grid-cols-1 items-center gap-10 py-[72px] lg:grid-cols-[minmax(0,480px)_minmax(0,1fr)] lg:gap-16 lg:py-24`}
       >
         <div className="relative min-h-[240px] overflow-hidden lg:min-h-[560px]">
           <Image
             src="/images/about-mike.jpg"
-            alt="Lush garden planting and maintenance work"
+            alt="Raised garden bed with herbs and leafy vegetables"
             fill
             className={coverImage}
             sizes="(max-width: 900px) 100vw, 34vw"
@@ -437,9 +386,10 @@ export default function Home() {
           </h2>
           <div className="flex flex-col gap-4">
             <p className={bodyMuted}>
-              Hi, I&apos;m Mike. I&apos;m a garden landscaper with 13 years of
-              industry experience, providing landscaping, outdoor improvements and
-              reliable garden maintenance across Stroud and the surrounding areas.
+              Hi, I&apos;m Mike. I&apos;m a garden landscaper with{" "}
+              {siteConfig.business.experienceYears} years of industry experience,
+              providing landscaping, outdoor improvements and reliable garden
+              maintenance across Stroud and the surrounding areas.
             </p>
             <p className={bodyMuted}>
               Whether you need a completely new look or a seasonal tidy-up, I
@@ -465,7 +415,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={`${sectionShell} py-[72px] lg:py-24`}>
+      <section
+        id="process"
+        className={`${sectionShell} py-[72px] lg:py-24`}
+      >
         <h2 className={`${sectionHeading} max-w-[560px]`}>
           Getting your garden project started
         </h2>
@@ -494,6 +447,7 @@ export default function Home() {
       </section>
 
       <section
+        id="service-area"
         className={`${sectionShell} grid grid-cols-1 items-center gap-10 bg-primary py-[72px] lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:gap-16 lg:py-20`}
       >
         <div>
@@ -505,14 +459,10 @@ export default function Home() {
             maintenance and outdoor improvements throughout Stroud and the
             surrounding areas.
           </p>
-          <div className="mt-5 border-t border-secondary/35 pt-3">
-            <span className="font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-secondary">
-              Surrounding areas
-            </span>
-            <p className="mt-2 m-0 font-sans text-base leading-[26px] text-primary-foreground opacity-80">
-              {surroundingAreas.join(" · ")}
-            </p>
-          </div>
+          <p className="mt-5 border-t border-secondary/35 pt-3 font-sans text-base leading-[26px] text-primary-foreground opacity-80">
+            Based in Stroud and serving the surrounding areas. Contact Mike to
+            confirm whether your garden is within the current service area.
+          </p>
         </div>
 
         <div className="flex min-h-[220px] min-w-0 items-stretch justify-stretch overflow-hidden lg:min-h-[280px]">
@@ -526,7 +476,10 @@ export default function Home() {
               sizes="(max-width: 900px) 100vw, 48vw"
             />
             <div className="pointer-events-none absolute inset-0 flex items-end justify-end gap-2.5 bg-gradient-to-r from-primary/55 via-primary/15 to-primary/25 px-6 py-5">
-              <span className="size-2.5 shrink-0 rounded-full bg-accent" />
+              <span
+                className="size-2.5 shrink-0 rounded-full bg-accent"
+                aria-hidden="true"
+              />
               <span className="font-sans text-xs font-semibold uppercase leading-4 tracking-label text-primary-foreground">
                 Stroud
               </span>
@@ -554,10 +507,10 @@ export default function Home() {
                 Phone
               </span>
               <a
-                href="tel:07715978631"
+                href={`tel:${siteConfig.business.phone.international}`}
                 className="font-sans text-lg font-semibold leading-6 text-foreground"
               >
-                07715 978631
+                {siteConfig.business.phone.display}
               </a>
             </div>
             <div className="border-b border-border py-[18px]">
@@ -565,10 +518,10 @@ export default function Home() {
                 Email
               </span>
               <a
-                href="mailto:mikehamergardens@gmail.com"
+                href={`mailto:${siteConfig.business.email}`}
                 className="font-sans text-base font-medium leading-6 text-foreground"
               >
-                mikehamergardens@gmail.com
+                {siteConfig.business.email}
               </a>
             </div>
             <div className="py-[18px]">
@@ -576,14 +529,19 @@ export default function Home() {
                 Working hours
               </span>
               <p className="m-0 font-sans text-base font-medium leading-6 text-foreground">
-                Monday to Friday · 8:00am-4:00pm
+                {siteConfig.business.openingHours.display}
               </p>
             </div>
           </div>
         </div>
 
-        <EnquiryForm />
+        <EnquiryForm
+          formId={siteConfig.form.formspreeId}
+          services={siteConfig.business.services}
+        />
       </section>
+
+      </main>
 
       <footer className={`${sectionShell} border-b-0 bg-foreground pt-16 pb-10`}>
         <div className="mb-12 flex flex-col justify-between gap-8 lg:flex-row">
@@ -640,22 +598,22 @@ export default function Home() {
                 Contact
               </span>
               <a
-                href="tel:07715978631"
+                href={`tel:${siteConfig.business.phone.international}`}
                 className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
               >
-                07715 978631
+                {siteConfig.business.phone.display}
               </a>
               <a
-                href="mailto:mikehamergardens@gmail.com"
+                href={`mailto:${siteConfig.business.email}`}
                 className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
               >
-                mikehamergardens@gmail.com
+                {siteConfig.business.email}
               </a>
               <p className="m-0 font-sans text-base leading-[26px] text-secondary">
                 Stroud and surrounding areas
               </p>
               <a
-                href="https://facebook.com"
+                href={siteConfig.business.facebook}
                 target="_blank"
                 rel="noreferrer"
                 className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
@@ -670,14 +628,8 @@ export default function Home() {
           <p className="m-0 font-sans text-base leading-[26px] text-secondary">
             © 2026 Mike Hamer Gardens. All rights reserved.
           </p>
-          <Link
-            href="#contact"
-            className="font-sans text-base leading-[26px] text-secondary"
-          >
-            Privacy Policy
-          </Link>
         </div>
       </footer>
-    </main>
+    </>
   );
 }
