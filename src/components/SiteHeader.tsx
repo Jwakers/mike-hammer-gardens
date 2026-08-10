@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
+import { HashLink } from "@/components/HashLink";
 import { MhMonogram } from "@/components/MhMonogram";
 
 const navLinks = [
@@ -109,7 +110,7 @@ export function SiteHeader() {
               aria-label="Primary"
             >
               {navLinks.map((link) => (
-                <Link
+                <HashLink
                   key={link.href}
                   href={link.href}
                   className={
@@ -120,18 +121,18 @@ export function SiteHeader() {
                   aria-current={isActive(link.href) ? "page" : undefined}
                 >
                   {link.label}
-                </Link>
+                </HashLink>
               ))}
             </nav>
 
             <div className="flex items-center gap-3 lg:hidden">
-              <Link
+              <HashLink
                 href="/#contact"
                 className="inline-flex items-center justify-center bg-primary px-4 py-2.5 font-sans text-sm font-bold leading-5 text-primary-foreground transition-colors hover:bg-[#162B22]"
                 onClick={closeMenu}
               >
                 Quote
-              </Link>
+              </HashLink>
               <button
                 ref={buttonRef}
                 type="button"
@@ -164,9 +165,9 @@ export function SiteHeader() {
               </button>
             </div>
 
-            <Link href="/#contact" className={`${primaryButton} max-lg:hidden`}>
+            <HashLink href="/#contact" className={`${primaryButton} max-lg:hidden`}>
               Request a Quote
-            </Link>
+            </HashLink>
           </div>
         </div>
 
@@ -191,7 +192,7 @@ export function SiteHeader() {
               <ul className="m-0 flex list-none flex-col p-0">
                 {navLinks.map((link) => (
                   <li key={link.href} className="border-b border-border">
-                    <Link
+                    <HashLink
                       href={link.href}
                       tabIndex={open ? undefined : -1}
                       className="block py-4 font-sans text-base font-medium leading-[26px] text-foreground transition-colors hover:text-accent"
@@ -199,18 +200,18 @@ export function SiteHeader() {
                       onClick={closeMenu}
                     >
                       {link.label}
-                    </Link>
+                    </HashLink>
                   </li>
                 ))}
               </ul>
-              <Link
+              <HashLink
                 href="/#contact"
                 tabIndex={open ? undefined : -1}
                 className={`${primaryButton} mt-6 w-full`}
                 onClick={closeMenu}
               >
                 Request a Quote
-              </Link>
+              </HashLink>
             </nav>
           </div>
         </div>

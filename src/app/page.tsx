@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { EnquiryForm } from "@/components/EnquiryForm";
+import { HashLink } from "@/components/HashLink";
 import { StructuredData } from "@/components/StructuredData";
 import { siteConfig } from "@/config/site";
 
@@ -168,9 +169,9 @@ export default function Home() {
             across Stroud and the surrounding areas.
           </p>
           <div className="flex flex-wrap gap-4 max-[560px]:flex-col">
-            <Link href="#contact" className={primaryButton}>
+            <HashLink href="#contact" className={primaryButton}>
               Request a Quote
-            </Link>
+            </HashLink>
             <Link href="/gallery" className={secondaryButton}>
               View Recent Work
             </Link>
@@ -219,9 +220,9 @@ export default function Home() {
               provides practical, reliable help for outdoor spaces across Stroud.
             </p>
           </div>
-          <Link href="#contact" className={textLink}>
+          <HashLink href="#contact" className={textLink}>
             Request a quotation
-          </Link>
+          </HashLink>
         </div>
 
         <div className="grid grid-cols-1 border-t border-border lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)]">
@@ -325,9 +326,9 @@ export default function Home() {
             <p className="m-0 font-sans text-base leading-[26px] text-muted max-[560px]:text-base max-[560px]:leading-[1.55]">
               {projects[0].description}
             </p>
-            <Link href="#contact" className={textLink}>
+            <HashLink href="#contact" className={textLink}>
               Enquire about similar work
-            </Link>
+            </HashLink>
           </div>
         </article>
 
@@ -353,9 +354,9 @@ export default function Home() {
               <p className="m-0 font-sans text-base leading-[26px] text-muted max-[560px]:text-base max-[560px]:leading-[1.55]">
                 {project.description}
               </p>
-              <Link href="#contact" className={textLink}>
+              <HashLink href="#contact" className={textLink}>
                 Enquire about similar work
-              </Link>
+              </HashLink>
             </article>
           ))}
         </div>
@@ -585,7 +586,6 @@ export default function Home() {
 
         <EnquiryForm
           formId={siteConfig.form.formspreeId}
-          services={siteConfig.business.services}
           allowFileUploads={siteConfig.form.allowFileUploads}
         />
       </section>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
+import { HashLink } from "@/components/HashLink";
 import {
   beforeAfterPairs,
   galleryPhotos,
@@ -295,9 +296,9 @@ export function GalleryPageContent() {
             Tell Mike about the work and he will get back with clear next steps.
           </p>
         </div>
-        <Link href="/#contact" className={primaryButton}>
+        <HashLink href="/#contact" className={primaryButton}>
           Request a Quote
-        </Link>
+        </HashLink>
       </section>
     </>
   );

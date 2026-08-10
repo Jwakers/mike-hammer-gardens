@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import { HashLink } from "@/components/HashLink";
 import { MhMonogram } from "@/components/MhMonogram";
 import { siteConfig } from "@/config/site";
 
@@ -41,13 +40,13 @@ export function SiteFooter() {
               Explore
             </span>
             {exploreLinks.map((link) => (
-              <Link
+              <HashLink
                 key={link.href}
                 href={link.href}
                 className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
               >
                 {link.label}
-              </Link>
+              </HashLink>
             ))}
           </div>
           <div className="flex w-full max-w-[240px] flex-col gap-3">

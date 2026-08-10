@@ -11,13 +11,11 @@ const fieldError =
 
 type EnquiryFormProps = {
   formId: string;
-  services: readonly string[];
   allowFileUploads?: boolean;
 };
 
 export function EnquiryForm({
   formId,
-  services,
   allowFileUploads = false,
 }: EnquiryFormProps) {
   const [state, handleSubmit] = useForm(formId);
@@ -193,33 +191,6 @@ export function EnquiryForm({
           {contactError}
         </p>
       ) : null}
-      <label className="flex flex-col gap-2">
-        <span className="font-sans text-sm font-semibold leading-5 text-foreground">
-          Service required
-        </span>
-        <select
-          id="service"
-          name="service"
-          required
-          defaultValue=""
-          className={fieldInput}
-        >
-          <option value="" disabled>
-            Select a service
-          </option>
-          {services.map((service) => (
-            <option key={service} value={service}>
-              {service}
-            </option>
-          ))}
-        </select>
-        <ValidationError
-          prefix="Service"
-          field="service"
-          errors={state.errors}
-          className={fieldError}
-        />
-      </label>
       {allowFileUploads ? (
         <label className="flex flex-col gap-2">
           <span className="font-sans text-sm font-semibold leading-5 text-foreground">
