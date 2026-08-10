@@ -49,33 +49,56 @@ const supportingServices = [
 
 const projects = [
   {
-    category: "Landscaping",
-    title: "Turf and paved garden layout",
+    category: "Hard landscaping",
+    title: "Flagstone patio and retaining wall",
     description:
-      "A garden layout combining turf, paved areas, steps and established planting.",
-    image: "/images/project-garden.jpg",
-    alt: "Garden with turf, a paved seating area and steps",
-    imagePosition: "72% 38%",
+      "Natural stone paving with a dry-stone retaining wall — hard landscaping built to last in Cotswold gardens.",
+    image: "/images/site-work/project-flagstone-patio.jpg",
+    alt: "Wet flagstone patio beside a dry stone retaining wall",
+    imagePosition: "50% 45%",
   },
   {
-    category: "Stone paving",
-    title: "Natural stone path",
+    category: "Stone walling",
+    title: "Dry stone walling",
     description:
-      "A natural stone path set between planted beds to create a practical garden route.",
-    image: "/images/project-stone-path.jpg",
-    alt: "Natural stone path between planted garden beds",
+      "Traditional dry stone rebuilt around living trees — craftsmanship that settles into the landscape.",
+    image: "/images/site-work/hero-stonewall-detail.jpg",
+    alt: "Rebuilt dry stone wall built around tree trunks",
     imagePosition: "50% 40%",
   },
   {
-    category: "Fencing",
-    title: "Garden gate, lawn and paving",
+    category: "Timber work",
+    title: "Raised beds with a valley view",
     description:
-      "A metal garden gate, lawn and paved seating area brought together in one outdoor space.",
-    image: "/images/project-gate.jpg",
-    alt: "Metal garden gate beside a lawn and paved area",
-    imagePosition: "45% 40%",
+      "Timber sleeper beds built along the boundary, looking out over the Stroud hills.",
+    image: "/images/site-work/hero-raised-beds-view.jpg",
+    alt: "Timber raised garden beds overlooking a green valley",
+    imagePosition: "50% 35%",
   },
 ];
+
+const testimonials = {
+  featured: {
+    quote:
+      "Mike completely transformed our garden. He was reliable, tidy and kept us informed throughout the project. The finished result was exactly what we hoped for.",
+    name: "Customer Name",
+    detail: "Stroud · Landscaping and patio",
+  },
+  supporting: [
+    {
+      quote:
+        "From the first visit through to the completed work, everything was handled professionally. Mike arrived when agreed and left the garden clean and tidy.",
+      name: "Customer Name",
+      detail: "Stonehouse · Fencing and garden clearance",
+    },
+    {
+      quote:
+        "We have used Mike for both maintenance and larger garden improvements. The work is always completed to a high standard and communication is excellent.",
+      name: "Customer Name",
+      detail: "Local area · Garden maintenance",
+    },
+  ],
+} as const;
 
 const aboutPoints = [
   "13 years of industry experience",
@@ -176,17 +199,18 @@ export default function Home() {
         </div>
 
         <div className="order-first flex min-w-0 flex-col gap-3 max-[560px]:order-none lg:order-none">
-          <div className="hidden items-center gap-3 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-muted lg:flex">
-            <span>Project · Dry stone walling</span>
+          <div className="hidden items-center justify-between gap-3 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-muted lg:flex">
+            <span>Project · Tiered garden refresh</span>
+            <span>Stroud</span>
           </div>
           <div className="relative min-h-[240px] overflow-hidden lg:min-h-[480px]">
             <Image
-              src="/images/hero-stone-wall.jpg"
-              alt="Dry stone garden wall with a valley view"
+              src="/images/site-work/hero-tiered-garden.jpg"
+              alt="Tiered garden with new turf, gravel and wooden steps"
               fill
               priority
               className={coverImage}
-              style={{ objectPosition: "50% 35%" }}
+              style={{ objectPosition: "50% 40%" }}
               sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 899px) calc(100vw - 96px), 48vw"
             />
           </div>
@@ -352,18 +376,52 @@ export default function Home() {
         className={`${sectionShell} py-[72px] lg:py-24`}
       >
         <div className="mb-12 max-w-[720px]">
-          <h2 className={sectionHeading}>Customer testimonials</h2>
+          <h2 className={sectionHeading}>Trusted by local homeowners</h2>
           <p className={`${bodyMuted} mt-4`}>
-            Genuine customer feedback will be published here once the wording
-            and attribution have been approved.
+            Reliable workmanship, clear communication and gardens left looking
+            their best.
           </p>
         </div>
 
-        <div className="border-t border-border pt-10">
-          <p className="m-0 max-w-[760px] font-display text-[22px] leading-[1.4] tracking-[-0.01em] text-foreground lg:text-[26px] lg:leading-[38px]">
-            Testimonials are intentionally not shown until Mike has supplied
-            genuine customer comments and permission for their attribution.
-          </p>
+        <div className="grid grid-cols-1 border-t border-border lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+          <blockquote className="m-0 border-border pt-10 pr-0 lg:border-r lg:pr-10">
+            <p className="m-0 font-display text-[22px] font-normal leading-[1.4] tracking-[-0.01em] text-foreground lg:text-[26px] lg:leading-[38px]">
+              &ldquo;{testimonials.featured.quote}&rdquo;
+            </p>
+            <footer className="mt-7 flex flex-col gap-1">
+              <cite className="not-italic font-sans text-sm font-semibold leading-5 text-foreground">
+                {testimonials.featured.name}
+              </cite>
+              <span className="font-sans text-sm leading-5 text-muted">
+                {testimonials.featured.detail}
+              </span>
+            </footer>
+          </blockquote>
+
+          <div className="grid lg:grid-rows-2">
+            {testimonials.supporting.map((item, index) => (
+              <blockquote
+                key={item.detail}
+                className={`m-0 border-t border-border pt-10 pl-0 first:border-t lg:border-t-0 lg:pl-10 ${
+                  index === 0
+                    ? "lg:border-b lg:border-border lg:pb-9"
+                    : "mt-6 pt-6 lg:mt-0 lg:pt-9"
+                }`}
+              >
+                <p className="m-0 font-display text-xl font-normal leading-[30px] tracking-[-0.01em] text-foreground">
+                  &ldquo;{item.quote}&rdquo;
+                </p>
+                <footer className="mt-5 flex flex-col gap-1">
+                  <cite className="not-italic font-sans text-sm font-semibold leading-5 text-foreground">
+                    {item.name}
+                  </cite>
+                  <span className="font-sans text-[13px] leading-[18px] text-muted">
+                    {item.detail}
+                  </span>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
         </div>
       </section>
 
