@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { MhMonogram } from "@/components/MhMonogram";
 
 const navLinks = [
-  { href: "#top", label: "Home" },
-  { href: "#services", label: "Services" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/#services", label: "Services" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/#contact", label: "Contact" },
 ] as const;
 
 const sectionShell =
@@ -19,10 +20,19 @@ const primaryButton =
   "inline-flex items-center justify-center bg-primary px-6 py-3.5 font-sans text-sm font-bold leading-5 text-primary-foreground transition-colors hover:bg-[#162B22]";
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [menuPathname, setMenuPathname] = useState(pathname);
   const menuId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const isGallery = pathname === "/gallery";
+
+  // Close the menu when the route changes (render-time reset, not an effect).
+  if (pathname !== menuPathname) {
+    setMenuPathname(pathname);
+    if (open) setOpen(false);
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -59,15 +69,25 @@ export function SiteHeader() {
     firstLink?.focus({ preventScroll: true });
   }, [open]);
 
-  const closeMenu = () => setOpen(false);
+  // Unlock body scroll immediately so Next.js can scroll the new route to top
+  // during navigation (overflow: clip otherwise fights that).
+  const closeMenu = () => {
+    document.body.style.overflow = "";
+    setOpen(false);
+  };
+
+  const isActive = (href: string) => {
+    if (href === "/gallery") return isGallery;
+    if (href === "/") return !isGallery;
+    return false;
+  };
 
   return (
     <header className="sticky top-0 z-50">
-      {/* Opaque chrome stays above the backdrop so the bar + panel never dim */}
       <div className={`${sectionShell} relative z-50 bg-background`}>
         <div className="flex items-center justify-between gap-6 py-[18px] lg:py-[22px]">
           <Link
-            href="#top"
+            href="/"
             className="inline-flex min-w-0 items-center gap-2.5 lg:gap-3.5"
             aria-label="Mike Hamer Gardens home"
             onClick={closeMenu}
@@ -93,10 +113,11 @@ export function SiteHeader() {
                   key={link.href}
                   href={link.href}
                   className={
-                    link.href === "#top"
+                    isActive(link.href)
                       ? "font-medium text-foreground"
                       : "font-medium"
                   }
+                  aria-current={isActive(link.href) ? "page" : undefined}
                 >
                   {link.label}
                 </Link>
@@ -105,7 +126,7 @@ export function SiteHeader() {
 
             <div className="flex items-center gap-3 lg:hidden">
               <Link
-                href="#contact"
+                href="/#contact"
                 className="inline-flex items-center justify-center bg-primary px-4 py-2.5 font-sans text-sm font-bold leading-5 text-primary-foreground transition-colors hover:bg-[#162B22]"
                 onClick={closeMenu}
               >
@@ -120,7 +141,6 @@ export function SiteHeader() {
                 aria-label={open ? "Close menu" : "Open menu"}
                 onClick={() => setOpen((value) => !value)}
               >
-                {/* Fixed 22×14 box — both bars rotate from center into a clean X */}
                 <span
                   className="relative block h-3.5 w-[22px]"
                   aria-hidden="true"
@@ -144,7 +164,7 @@ export function SiteHeader() {
               </button>
             </div>
 
-            <Link href="#contact" className={`${primaryButton} max-lg:hidden`}>
+            <Link href="/#contact" className={`${primaryButton} max-lg:hidden`}>
               Request a Quote
             </Link>
           </div>
@@ -175,6 +195,7 @@ export function SiteHeader() {
                       href={link.href}
                       tabIndex={open ? undefined : -1}
                       className="block py-4 font-sans text-base font-medium leading-[26px] text-foreground transition-colors hover:text-accent"
+                      aria-current={isActive(link.href) ? "page" : undefined}
                       onClick={closeMenu}
                     >
                       {link.label}
@@ -183,7 +204,7 @@ export function SiteHeader() {
                 ))}
               </ul>
               <Link
-                href="#contact"
+                href="/#contact"
                 tabIndex={open ? undefined : -1}
                 className={`${primaryButton} mt-6 w-full`}
                 onClick={closeMenu}
@@ -195,7 +216,6 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Backdrop sits under the chrome; only dims page content */}
       <div
         className={`fixed inset-0 z-40 bg-[rgba(44,44,42,0.28)] transition-opacity duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none lg:hidden ${
           open

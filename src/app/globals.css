@@ -81,7 +81,6 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     scroll-padding-top: 96px;
     scrollbar-gutter: stable;
     overflow-x: clip;
@@ -122,11 +121,5 @@
   section[id],
   main[id] {
     scroll-margin-top: 96px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
   }
 }

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Manrope, Newsreader } from "next/font/google";
 
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import { siteConfig, siteUrl, isIndexable } from "@/config/site";
 
 import "./globals.css";
@@ -91,7 +93,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-GB" className={`${manrope.variable} ${newsreader.variable}`}>
-      <body>{children}</body>
+      <body>
+        <a
+          href="#main-content"
+          className="fixed top-3 left-3 z-[100] -translate-y-24 bg-primary px-4 py-3 font-sans text-sm font-bold text-primary-foreground transition-transform focus:translate-y-0 motion-reduce:transition-none"
+        >
+          Skip to main content
+        </a>
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }

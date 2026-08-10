@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { EnquiryForm } from "@/components/EnquiryForm";
-import { MhMonogram } from "@/components/MhMonogram";
-import { SiteHeader } from "@/components/SiteHeader";
 import { StructuredData } from "@/components/StructuredData";
 import { siteConfig } from "@/config/site";
 
@@ -149,16 +147,8 @@ const coverImage = "object-cover";
 
 export default function Home() {
   return (
-    <>
-      <a
-        href="#main-content"
-        className="fixed top-3 left-3 z-[100] -translate-y-24 bg-primary px-4 py-3 font-sans text-sm font-bold text-primary-foreground transition-transform focus:translate-y-0 motion-reduce:transition-none"
-      >
-        Skip to main content
-      </a>
-      <SiteHeader />
-      <main id="main-content" tabIndex={-1} className="min-h-screen min-w-0">
-        <StructuredData />
+    <main id="main-content" tabIndex={-1} className="min-h-screen min-w-0">
+      <StructuredData />
 
       <section
         id="top"
@@ -181,7 +171,7 @@ export default function Home() {
             <Link href="#contact" className={primaryButton}>
               Request a Quote
             </Link>
-            <Link href="#projects" className={secondaryButton}>
+            <Link href="/gallery" className={secondaryButton}>
               View Recent Work
             </Link>
           </div>
@@ -309,8 +299,8 @@ export default function Home() {
               work.
             </p>
           </div>
-          <Link href="#contact" className={textLink}>
-            Discuss your project
+          <Link href="/gallery" className={textLink}>
+            View full gallery
           </Link>
         </div>
 
@@ -600,95 +590,6 @@ export default function Home() {
         />
       </section>
 
-      </main>
-
-      <footer className={`${sectionShell} border-b-0 bg-foreground pt-16 pb-10`}>
-        <div className="mb-12 flex flex-col justify-between gap-8 lg:flex-row">
-          <div className="max-w-[320px]">
-            <div className="mb-4 flex items-center gap-3">
-              <MhMonogram
-                width={28}
-                height={28}
-                primary="#A8B5A0"
-                background="#2c2c2a"
-              />
-              <span className="font-display text-[20px] font-medium leading-6 text-primary-foreground">
-                Mike Hamer Gardens
-              </span>
-            </div>
-            <p className="m-0 font-sans text-base leading-[26px] text-secondary">
-              Landscaping, garden maintenance and outdoor improvements across
-              Stroud and the surrounding areas.
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-8 lg:flex-row lg:gap-16">
-            <div className="flex w-full max-w-[240px] flex-col gap-3">
-              <span className="font-sans text-xs font-semibold uppercase leading-[18px] tracking-[0.1em] text-secondary">
-                Explore
-              </span>
-              <Link
-                href="#top"
-                className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
-              >
-                Home
-              </Link>
-              <Link
-                href="#services"
-                className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
-              >
-                Services
-              </Link>
-              <Link
-                href="#projects"
-                className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
-              >
-                Projects
-              </Link>
-              <Link
-                href="#contact"
-                className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
-              >
-                Contact
-              </Link>
-            </div>
-            <div className="flex w-full max-w-[240px] flex-col gap-3">
-              <span className="font-sans text-xs font-semibold uppercase leading-[18px] tracking-[0.1em] text-secondary">
-                Contact
-              </span>
-              <a
-                href={`tel:${siteConfig.business.phone.international}`}
-                className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
-              >
-                {siteConfig.business.phone.display}
-              </a>
-              <a
-                href={`mailto:${siteConfig.business.email}`}
-                className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
-              >
-                {siteConfig.business.email}
-              </a>
-              <p className="m-0 font-sans text-base leading-[26px] text-secondary">
-                Stroud and surrounding areas
-              </p>
-              <a
-                href={siteConfig.business.facebook}
-                target="_blank"
-                rel="noreferrer"
-                className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
-              >
-                Facebook
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-start justify-between gap-8 border-t border-secondary/25 pt-6 lg:flex-row lg:items-center">
-          <p className="m-0 font-sans text-base leading-[26px] text-secondary">
-            © 2026 Mike Hamer Gardens. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </>
+    </main>
   );
 }
