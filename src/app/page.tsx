@@ -5,6 +5,7 @@ import { EnquiryForm } from "@/components/EnquiryForm";
 import { HashLink } from "@/components/HashLink";
 import { StructuredData } from "@/components/StructuredData";
 import { siteConfig } from "@/config/site";
+import { testimonials } from "@/config/testimonials";
 
 type FeaturedServiceItem = {
   name: string;
@@ -76,28 +77,7 @@ const projects = [
   },
 ];
 
-const testimonials = {
-  featured: {
-    quote:
-      "Mike completely transformed our garden. He was reliable, tidy and kept us informed throughout the project. The finished result was exactly what we hoped for.",
-    name: "Customer Name",
-    detail: "Stroud · Landscaping and patio",
-  },
-  supporting: [
-    {
-      quote:
-        "From the first visit through to the completed work, everything was handled professionally. Mike arrived when agreed and left the garden clean and tidy.",
-      name: "Customer Name",
-      detail: "Stonehouse · Fencing and garden clearance",
-    },
-    {
-      quote:
-        "We have used Mike for both maintenance and larger garden improvements. The work is always completed to a high standard and communication is excellent.",
-      name: "Customer Name",
-      detail: "Local area · Garden maintenance",
-    },
-  ],
-} as const;
+const [featuredTestimonial, supportingTestimonial] = testimonials;
 
 const aboutPoints = [
   "13 years of industry experience",
@@ -163,10 +143,12 @@ export default function Home() {
           <h1 className="m-0 font-display text-[34px] font-medium leading-[1.15] tracking-tight text-foreground lg:text-[clamp(48px,6vw,56px)] lg:leading-[1.1]">
             Reliable landscaping, built around your garden.
           </h1>
-          <p className={`${bodyMuted} max-[560px]:text-base lg:text-lg lg:leading-[30px]`}>
+          <p
+            className={`${bodyMuted} max-[560px]:text-base lg:text-lg lg:leading-[30px]`}
+          >
             From patios and fencing to turfing, garden clearance and ongoing
-            maintenance, Mike Hamer Gardens provides reliable outdoor improvements
-            across Stroud and the surrounding areas.
+            maintenance, Mike Hamer Gardens provides reliable outdoor
+            improvements across Stroud and the surrounding areas.
           </p>
           <div className="flex flex-wrap gap-4 max-[560px]:flex-col">
             <HashLink href="#contact" className={primaryButton}>
@@ -178,7 +160,8 @@ export default function Home() {
           </div>
           <div className="w-fit border border-border bg-surface px-[18px] py-4">
             <strong className="mb-1.5 block font-display text-xl font-medium leading-body tracking-[-0.01em] text-foreground">
-              {siteConfig.business.experienceYears} years&apos; industry experience
+              {siteConfig.business.experienceYears} years&apos; industry
+              experience
             </strong>
             <span className="font-sans text-xs font-medium leading-[18px] text-muted">
               Landscaping, maintenance and garden improvements
@@ -217,7 +200,8 @@ export default function Home() {
             <h2 className={sectionHeading}>Everything your garden needs.</h2>
             <p className={`${bodyMuted} mt-4`}>
               From complete garden improvements to regular maintenance, Mike
-              provides practical, reliable help for outdoor spaces across Stroud.
+              provides practical, reliable help for outdoor spaces across
+              Stroud.
             </p>
           </div>
           <HashLink href="#contact" className={textLink}>
@@ -375,43 +359,38 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 border-t border-border lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
-          <blockquote className="m-0 border-border pt-10 pr-0 lg:border-r lg:pr-10">
+          <blockquote className="m-0 border-border pt-10 pb-4 lg:pb-0 pr-0 lg:border-r lg:pr-10">
             <p className="m-0 font-display text-[22px] font-normal leading-[1.4] tracking-[-0.01em] text-foreground lg:text-[26px] lg:leading-[38px]">
-              &ldquo;{testimonials.featured.quote}&rdquo;
+              &ldquo;{featuredTestimonial.displayQuote}&rdquo;
             </p>
             <footer className="mt-7 flex flex-col gap-1">
               <cite className="not-italic font-sans text-sm font-semibold leading-5 text-foreground">
-                {testimonials.featured.name}
+                {featuredTestimonial.name}
               </cite>
               <span className="font-sans text-sm leading-5 text-muted">
-                {testimonials.featured.detail}
+                {featuredTestimonial.detail}
               </span>
             </footer>
           </blockquote>
 
           <div className="grid lg:grid-rows-2">
-            {testimonials.supporting.map((item, index) => (
-              <blockquote
-                key={item.detail}
-                className={`m-0 border-t border-border pt-10 pl-0 first:border-t lg:border-t-0 lg:pl-10 ${
-                  index === 0
-                    ? "lg:border-b lg:border-border lg:pb-9"
-                    : "mt-6 pt-6 lg:mt-0 lg:pt-9"
-                }`}
-              >
-                <p className="m-0 font-display text-xl font-normal leading-[30px] tracking-[-0.01em] text-foreground">
-                  &ldquo;{item.quote}&rdquo;
-                </p>
-                <footer className="mt-5 flex flex-col gap-1">
-                  <cite className="not-italic font-sans text-sm font-semibold leading-5 text-foreground">
-                    {item.name}
-                  </cite>
-                  <span className="font-sans text-[13px] leading-[18px] text-muted">
-                    {item.detail}
-                  </span>
-                </footer>
-              </blockquote>
-            ))}
+            <blockquote className="m-0 border-t border-border pt-10 pl-0 lg:border-t-0 lg:border-b lg:pt-10 lg:pb-9 lg:pl-10">
+              <p className="m-0 font-display text-xl font-normal leading-[30px] tracking-[-0.01em] text-foreground">
+                &ldquo;{supportingTestimonial.displayQuote}&rdquo;
+              </p>
+              <footer className="mt-5 flex flex-col gap-1">
+                <cite className="not-italic font-sans text-sm font-semibold leading-5 text-foreground">
+                  {supportingTestimonial.name}
+                </cite>
+                <span className="font-sans text-[13px] leading-[18px] text-muted">
+                  {supportingTestimonial.detail}
+                </span>
+              </footer>
+            </blockquote>
+            <div
+              aria-hidden="true"
+              className="hidden min-h-24 lg:block lg:pl-10 lg:pt-9"
+            />
           </div>
         </div>
       </section>
@@ -436,9 +415,10 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             <p className={bodyMuted}>
               Hi, I&apos;m Mike. I&apos;m a garden landscaper with{" "}
-              {siteConfig.business.experienceYears} years of industry experience,
-              providing landscaping, outdoor improvements and reliable garden
-              maintenance across Stroud and the surrounding areas.
+              {siteConfig.business.experienceYears} years of industry
+              experience, providing landscaping, outdoor improvements and
+              reliable garden maintenance across Stroud and the surrounding
+              areas.
             </p>
             <p className={bodyMuted}>
               Whether you need a completely new look or a seasonal tidy-up, I
@@ -464,10 +444,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        id="process"
-        className={`${sectionShell} py-[72px] lg:py-24`}
-      >
+      <section id="process" className={`${sectionShell} py-[72px] lg:py-24`}>
         <h2 className={`${sectionHeading} max-w-[560px]`}>
           Getting your garden project started
         </h2>
@@ -589,7 +566,6 @@ export default function Home() {
           allowFileUploads={siteConfig.form.allowFileUploads}
         />
       </section>
-
     </main>
   );
 }
