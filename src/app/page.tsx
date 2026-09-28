@@ -77,7 +77,7 @@ const projects = [
   },
 ];
 
-const [featuredTestimonial, supportingTestimonial] = testimonials;
+const [featuredTestimonial, ...supportingTestimonials] = testimonials;
 
 const aboutPoints = [
   "13 years of industry experience",
@@ -351,7 +351,7 @@ export default function Home() {
         className={`${sectionShell} py-[72px] lg:py-24`}
       >
         <div className="mb-12 max-w-[720px]">
-          <h2 className={sectionHeading}>Trusted by local homeowners</h2>
+          <h2 className={sectionHeading}>Trusted by homeowners and local builders</h2>
           <p className={`${bodyMuted} mt-4`}>
             Reliable workmanship, clear communication and gardens left looking
             their best.
@@ -373,24 +373,29 @@ export default function Home() {
             </footer>
           </blockquote>
 
-          <div className="grid lg:grid-rows-2">
-            <blockquote className="m-0 border-t border-border pt-10 pl-0 lg:border-t-0 lg:border-b lg:pt-10 lg:pb-9 lg:pl-10">
-              <p className="m-0 font-display text-xl font-normal leading-[30px] tracking-[-0.01em] text-foreground">
-                &ldquo;{supportingTestimonial.displayQuote}&rdquo;
-              </p>
-              <footer className="mt-5 flex flex-col gap-1">
-                <cite className="not-italic font-sans text-sm font-semibold leading-5 text-foreground">
-                  {supportingTestimonial.name}
-                </cite>
-                <span className="font-sans text-[13px] leading-[18px] text-muted">
-                  {supportingTestimonial.detail}
-                </span>
-              </footer>
-            </blockquote>
-            <div
-              aria-hidden="true"
-              className="hidden min-h-24 lg:block lg:pl-10 lg:pt-9"
-            />
+          <div className="grid">
+            {supportingTestimonials.map((testimonial, index) => (
+              <blockquote
+                key={testimonial.id}
+                className={`m-0 border-t border-border pt-10 pl-0 lg:border-t-0 lg:pb-9 lg:pl-10 ${
+                  index < supportingTestimonials.length - 1
+                    ? "pb-9 lg:border-b"
+                    : ""
+                }`}
+              >
+                <p className="m-0 font-display text-xl font-normal leading-[30px] tracking-[-0.01em] text-foreground">
+                  &ldquo;{testimonial.displayQuote}&rdquo;
+                </p>
+                <footer className="mt-5 flex flex-col gap-1">
+                  <cite className="not-italic font-sans text-sm font-semibold leading-5 text-foreground">
+                    {testimonial.name}
+                  </cite>
+                  <span className="font-sans text-[13px] leading-[18px] text-muted">
+                    {testimonial.detail}
+                  </span>
+                </footer>
+              </blockquote>
+            ))}
           </div>
         </div>
       </section>
