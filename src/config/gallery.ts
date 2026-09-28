@@ -5,6 +5,7 @@ export const galleryFilters = [
   "Timber work",
   "Clearance",
   "Fencing",
+  "Turfing",
 ] as const;
 
 export type GalleryFilter = (typeof galleryFilters)[number];
@@ -19,6 +20,8 @@ export type BeforeAfterPair = {
   afterSrc: string;
   beforeAlt: string;
   afterAlt: string;
+  beforePosition?: string;
+  afterPosition?: string;
   featured?: boolean;
 };
 
@@ -34,6 +37,17 @@ export type GalleryPhoto = {
 };
 
 export const beforeAfterPairs: readonly BeforeAfterPair[] = [
+  {
+    id: "cleared-lawn",
+    title: "Overgrown garden → fresh turf",
+    tags: ["Clearance", "Turfing"],
+    beforeSrc: "/images/site-work/photo-border-clearance.jpg",
+    afterSrc: "/images/site-work/photo-striped-lawn.jpg",
+    beforeAlt: "Overgrown garden border being cleared with hand tools",
+    afterAlt:
+      "Fresh striped turf lawn between clipped borders and a stone path",
+    featured: true,
+  },
   {
     id: "fence",
     title: "Overgrowth cleared → new fencing",
@@ -80,6 +94,31 @@ export const beforeAfterPairs: readonly BeforeAfterPair[] = [
     beforeAlt: "Front garden planting bed before paving",
     afterAlt: "Flagstone paved seating area with timber bench",
   },
+  {
+    id: "slopedbeds",
+    title: "Sloping garden fencing + raised beds",
+    tags: ["Fencing", "Timber work"],
+    beforeSrc: "/images/site-work/pair-slopedbeds-before.jpg",
+    afterSrc: "/images/site-work/pair-slopedbeds-after.jpg",
+    beforeAlt:
+      "Weathered timber fence above bare soil on a steeply sloping garden",
+    afterAlt:
+      "New timber fencing, sleeper raised beds and retaining edge on a sloping garden",
+    beforePosition: "50% 54%",
+    afterPosition: "50% 56%",
+  },
+  {
+    id: "frontborder",
+    title: "Overgrown front border clearance",
+    tags: ["Clearance"],
+    beforeSrc: "/images/site-work/pair-frontborder-before.jpg",
+    afterSrc: "/images/site-work/pair-frontborder-after.jpg",
+    beforeAlt: "Dense shrubs and groundcover beside a block-paved driveway",
+    afterAlt:
+      "Front garden border cleared and cut back beside a block-paved driveway",
+    beforePosition: "50% 57%",
+    afterPosition: "50% 62%",
+  },
 ];
 
 export const galleryPhotos: readonly GalleryPhoto[] = [
@@ -93,6 +132,24 @@ export const galleryPhotos: readonly GalleryPhoto[] = [
     alt: "Tiered garden with new turf, gravel and wooden steps",
     imagePosition: "50% 40%",
     featured: true,
+  },
+  {
+    id: "sleeper-beds-fence",
+    title: "L-shaped sleeper beds",
+    description: "Raised timber planting beds built along the garden boundary",
+    tags: ["Timber work"],
+    src: "/images/site-work/photo-sleeper-beds-fence.jpg",
+    alt: "L-shaped timber sleeper raised beds filled with soil beside a fence",
+    imagePosition: "50% 52%",
+  },
+  {
+    id: "sleeper-beds-angle",
+    title: "Sleeper beds ready for planting",
+    description: "Strong, practical growing spaces built to fit the garden",
+    tags: ["Timber work"],
+    src: "/images/site-work/photo-sleeper-beds-angle.jpg",
+    alt: "Three timber sleeper raised beds filled with soil",
+    imagePosition: "50% 52%",
   },
   {
     id: "stone-detail",

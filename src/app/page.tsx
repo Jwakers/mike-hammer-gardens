@@ -75,6 +75,24 @@ const projects = [
     alt: "Timber raised garden beds overlooking a green valley",
     imagePosition: "50% 35%",
   },
+  {
+    category: "Fencing & timber work",
+    title: "Fencing and raised beds on a slope",
+    description:
+      "New timber fencing, sleeper raised beds and a retaining edge built into a steep garden.",
+    image: "/images/site-work/pair-slopedbeds-after.jpg",
+    alt: "New timber fencing and sleeper raised beds on a sloping garden",
+    imagePosition: "50% 52%",
+  },
+  {
+    category: "Turfing",
+    title: "Fresh turf lawn",
+    description:
+      "A freshly laid lawn fitted neatly around established borders and a stone path.",
+    image: "/images/site-work/photo-striped-lawn.jpg",
+    alt: "Fresh striped turf lawn between clipped borders and a stone path",
+    imagePosition: "50% 50%",
+  },
 ];
 
 const [featuredTestimonial, ...supportingTestimonials] = testimonials;

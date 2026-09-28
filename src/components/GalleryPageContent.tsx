@@ -63,8 +63,15 @@ export function GalleryPageContent() {
     [filter],
   );
 
-  const featuredPair = pairs.find((pair) => pair.featured) ?? pairs[0];
-  const supportingPairs = pairs.filter((pair) => pair.id !== featuredPair?.id);
+  const explicitlyFeaturedPairs = pairs.filter((pair) => pair.featured);
+  const featuredPairs =
+    explicitlyFeaturedPairs.length > 0
+      ? explicitlyFeaturedPairs
+      : pairs.slice(0, 1);
+  const featuredPairIds = new Set(featuredPairs.map((pair) => pair.id));
+  const supportingPairs = pairs.filter(
+    (pair) => !featuredPairIds.has(pair.id),
+  );
   const featuredPhoto = photos.find((photo) => photo.featured) ?? photos[0];
   const gridPhotos = photos.filter((photo) => photo.id !== featuredPhoto?.id);
 
@@ -138,22 +145,22 @@ export function GalleryPageContent() {
           </p>
         ) : (
           <div className="flex flex-col gap-12 lg:gap-10">
-            {featuredPair ? (
-              <article className="flex flex-col gap-5">
+            {featuredPairs.map((pair) => (
+              <article key={pair.id} className="flex flex-col gap-5">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <h3 className="m-0 font-display text-xl font-medium leading-7 text-primary">
-                    {featuredPair.title}
+                    {pair.title}
                   </h3>
-                  <TagList tags={featuredPair.tags} />
+                  <TagList tags={pair.tags} />
                 </div>
                 <BeforeAfterSlider
-                  beforeSrc={featuredPair.beforeSrc}
-                  afterSrc={featuredPair.afterSrc}
-                  beforeAlt={featuredPair.beforeAlt}
-                  afterAlt={featuredPair.afterAlt}
+                  beforeSrc={pair.beforeSrc}
+                  afterSrc={pair.afterSrc}
+                  beforeAlt={pair.beforeAlt}
+                  afterAlt={pair.afterAlt}
                 />
               </article>
-            ) : null}
+            ))}
 
             <div className="flex flex-col gap-10">
               {supportingPairs.map((pair) => (
@@ -175,6 +182,9 @@ export function GalleryPageContent() {
                           alt={pair.beforeAlt}
                           fill
                           className="object-cover"
+                          style={{
+                            objectPosition: pair.beforePosition ?? "50% 50%",
+                          }}
                           sizes="(max-width: 900px) 100vw, 50vw"
                         />
                       </div>
@@ -189,6 +199,9 @@ export function GalleryPageContent() {
                           alt={pair.afterAlt}
                           fill
                           className="object-cover"
+                          style={{
+                            objectPosition: pair.afterPosition ?? "50% 50%",
+                          }}
                           sizes="(max-width: 900px) 100vw, 50vw"
                         />
                       </div>
