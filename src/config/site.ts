@@ -44,7 +44,7 @@ export const siteConfig = {
       display: "07715 978631",
       international: "+447715978631",
     },
-    email: "jackwakeham82@gmail.com",
+    email: "mikehamergardens@gmail.com",
     facebook: "https://www.facebook.com/p/Mike-Hamer-Gardens-100078705781176/",
     primaryLocation: {
       locality: "Stroud",
