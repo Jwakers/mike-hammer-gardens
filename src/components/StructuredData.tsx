@@ -35,7 +35,6 @@ export function StructuredData() {
         name: siteConfig.business.name,
         url: homepage,
         description: siteConfig.business.description,
-        telephone: siteConfig.business.phone.international,
         email: siteConfig.business.email,
         logo: absoluteUrl(siteConfig.seo.logoPath),
         image: absoluteUrl(siteConfig.seo.openGraphImagePath),

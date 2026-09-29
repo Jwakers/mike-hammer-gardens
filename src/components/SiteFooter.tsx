@@ -54,12 +54,6 @@ export function SiteFooter() {
               Contact
             </span>
             <a
-              href={`tel:${siteConfig.business.phone.international}`}
-              className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
-            >
-              {siteConfig.business.phone.display}
-            </a>
-            <a
               href={`mailto:${siteConfig.business.email}`}
               className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
             >

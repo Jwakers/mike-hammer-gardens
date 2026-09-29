@@ -40,10 +40,6 @@ export const siteConfig = {
     type: "HomeAndConstructionBusiness",
     description:
       "Independent landscaping and garden-services business providing reliable garden improvements and maintenance across Stroud and surrounding areas.",
-    phone: {
-      display: "07715 978631",
-      international: "+447715978631",
-    },
     email: "mikehamergardens@gmail.com",
     facebook: "https://www.facebook.com/p/Mike-Hamer-Gardens-100078705781176/",
     primaryLocation: {

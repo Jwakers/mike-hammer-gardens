@@ -553,17 +553,6 @@ export default function Home() {
           <div className="border-t border-border">
             <div className="border-b border-border py-[18px]">
               <span className="mb-1 block font-sans text-xs font-semibold uppercase leading-[18px] tracking-[0.1em] text-muted">
-                Phone
-              </span>
-              <a
-                href={`tel:${siteConfig.business.phone.international}`}
-                className="font-sans text-lg font-semibold leading-6 text-foreground"
-              >
-                {siteConfig.business.phone.display}
-              </a>
-            </div>
-            <div className="border-b border-border py-[18px]">
-              <span className="mb-1 block font-sans text-xs font-semibold uppercase leading-[18px] tracking-[0.1em] text-muted">
                 Email
               </span>
               <a
