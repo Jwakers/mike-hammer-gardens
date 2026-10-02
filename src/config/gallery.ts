@@ -115,9 +115,9 @@ export const beforeAfterPairs: readonly BeforeAfterPair[] = [
     afterSrc: "/images/site-work/pair-frontborder-after.jpg",
     beforeAlt: "Dense shrubs and groundcover beside a block-paved driveway",
     afterAlt:
-      "Front garden border cleared and cut back beside a block-paved driveway",
+      "Front garden border cleared and covered in bark chippings beside a block-paved driveway",
     beforePosition: "50% 57%",
-    afterPosition: "50% 62%",
+    afterPosition: "50% 55%",
   },
 ];
 
