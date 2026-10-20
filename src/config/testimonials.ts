@@ -17,6 +17,15 @@ export const testimonials = [
     detail: "Director · Morgan Barnfield Construction Ltd",
   },
   {
+    id: "phil-storer",
+    fullText:
+      "Mike is a top-tier landscape gardener who is exceptionally hardworking, professional, and reliable. He approached the job with great skill and attention to detail from start to finish. The quality of his workmanship speaks for itself, and he left everything spotless. Highly recommended to anyone looking for a reliable, expert gardener!",
+    displayQuote:
+      "Mike is a top-tier landscape gardener who is exceptionally hardworking, professional, and reliable. He approached the job with great skill and attention to detail from start to finish. The quality of his workmanship speaks for itself, and he left everything spotless. Highly recommended to anyone looking for a reliable, expert gardener!",
+    name: "Phil Storer",
+    detail: "Customer review",
+  },
+  {
     id: "hillside-garden",
     fullText:
       "Mike's been doing work for us for the past 4 years. A large neglected hillside garden needed clearing and needed some ideas. Mike helped with both, but instead of bulldozing what was there with bold and aggressive vision, Mike worked carefully with the natural features and strengths of the garden. We tackled the job slowly (you can't rush art!) calling Mike in after each new phase of work evolved/became established. Mike worked  creatively with a lot of the stone already on site, keeping the use of new stone and manufactured materials to a minimum. With it's dry stone walls, patio areas and new borders and lawns, our garden now looks perfect!",
