@@ -29,6 +29,7 @@ export type GalleryPhoto = {
   id: string;
   title: string;
   description: string;
+  location?: string;
   tags: readonly GalleryTag[];
   src: string;
   alt: string;
@@ -127,6 +128,7 @@ export const galleryPhotos: readonly GalleryPhoto[] = [
     title: "Tiered garden with valley view",
     description:
       "Fresh turf, stone steps and a wrought-iron gate looking out over the Stroud hills.",
+    location: "Stroud",
     tags: ["Hard landscaping"],
     src: "/images/site-work/hero-tiered-garden.jpg",
     alt: "Tiered garden with new turf, gravel and wooden steps",

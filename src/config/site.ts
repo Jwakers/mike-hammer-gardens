@@ -41,6 +41,11 @@ export const siteConfig = {
     description:
       "Independent landscaping and garden-services business providing reliable garden improvements and maintenance across Stroud and surrounding areas.",
     email: "mikehamergardens@gmail.com",
+    phone: {
+      display: "07715 978631",
+      international: "+44 7715 978631",
+      href: "tel:+447715978631",
+    },
     facebook: "https://www.facebook.com/p/Mike-Hamer-Gardens-100078705781176/",
     primaryLocation: {
       locality: "Stroud",
@@ -48,8 +53,15 @@ export const siteConfig = {
       country: "GB",
     },
     serviceArea: "Stroud and surrounding areas",
-    // TODO: Add only towns and villages Mike confirms he genuinely serves.
-    confirmedAdditionalServiceAreas: [] as readonly string[],
+    confirmedAdditionalServiceAreas: [
+      "Nailsworth",
+      "Stonehouse",
+      "Painswick",
+      "Minchinhampton",
+      "Rodborough",
+      "Brimscombe",
+      "Chalford",
+    ] as const,
     openingHours: {
       days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] as const,
       opens: "08:00",

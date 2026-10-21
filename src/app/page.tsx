@@ -124,6 +124,27 @@ const steps = [
   },
 ];
 
+const faqs = [
+  {
+    question: "Which areas does Mike Hamer Gardens cover?",
+    answer: `Mike is based in Stroud and works across ${siteConfig.business.confirmedAdditionalServiceAreas.join(", ")} and nearby areas. Get in touch with your postcode to confirm availability.`,
+  },
+  {
+    question: "What kind of garden work does Mike take on?",
+    answer:
+      "Mike provides landscaping, patios, fencing, turfing, garden clearance, repairs, pressure washing and regular or seasonal garden maintenance.",
+  },
+  {
+    question: "How do I request a quotation?",
+    answer:
+      "Send a short description of the work and your postcode through the enquiry form, or call Mike directly. He will discuss the job and arrange a visit where needed before providing a quotation.",
+  },
+  {
+    question: "When is Mike available?",
+    answer: `Usual working hours are ${siteConfig.business.openingHours.display.toLowerCase()}. Leave an enquiry at any time and Mike will reply when he is available.`,
+  },
+] as const;
+
 const sectionShell =
   "border-b border-border px-5 max-[560px]:px-5 lg:px-12 xl:px-20";
 
@@ -159,7 +180,7 @@ export default function Home() {
             <span>Stroud · Gloucestershire</span>
           </div>
           <h1 className="m-0 font-display text-[34px] font-medium leading-[1.15] tracking-tight text-foreground lg:text-[clamp(48px,6vw,56px)] lg:leading-[1.1]">
-            Reliable landscaping, built around your garden.
+            Landscaping and garden services in Stroud.
           </h1>
           <p
             className={`${bodyMuted} max-[560px]:text-base lg:text-lg lg:leading-[30px]`}
@@ -509,8 +530,10 @@ export default function Home() {
             surrounding areas.
           </p>
           <p className="mt-5 border-t border-secondary/35 pt-3 font-sans text-base leading-[26px] text-primary-foreground opacity-80">
-            Based in Stroud and serving the surrounding areas. Contact Mike to
-            confirm whether your garden is within the current service area.
+            Based in Stroud and serving{" "}
+            {siteConfig.business.confirmedAdditionalServiceAreas.join(", ")}{" "}
+            and nearby areas. Contact Mike with your postcode to confirm
+            availability.
           </p>
         </div>
 
@@ -538,6 +561,40 @@ export default function Home() {
       </section>
 
       <section
+        id="frequently-asked-questions"
+        className={`${sectionShell} bg-sage-wash py-[72px] lg:py-24`}
+      >
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-16">
+          <div>
+            <p className="m-0 font-sans text-[13px] font-semibold uppercase leading-4 tracking-label text-accent">
+              Local garden services
+            </p>
+            <h2 className={`${sectionHeading} mt-3`}>
+              Frequently asked questions
+            </h2>
+          </div>
+          <div className="border-t border-border">
+            {faqs.map((faq) => (
+              <details key={faq.question} className="group border-b border-border">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-display text-xl font-medium leading-7 text-foreground marker:content-none">
+                  {faq.question}
+                  <span
+                    className="shrink-0 font-sans text-2xl font-normal leading-none text-accent group-open:rotate-45"
+                    aria-hidden="true"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className={`${bodyMuted} max-w-[680px] pb-6`}>
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
         id="contact"
         className={`${sectionShell} grid grid-cols-1 items-start gap-10 py-[72px] lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-16 lg:py-24`}
       >
@@ -551,6 +608,17 @@ export default function Home() {
           </div>
 
           <div className="border-t border-border">
+            <div className="border-b border-border py-[18px]">
+              <span className="mb-1 block font-sans text-xs font-semibold uppercase leading-[18px] tracking-[0.1em] text-muted">
+                Phone
+              </span>
+              <a
+                href={siteConfig.business.phone.href}
+                className="font-sans text-base font-medium leading-6 text-foreground"
+              >
+                {siteConfig.business.phone.display}
+              </a>
+            </div>
             <div className="border-b border-border py-[18px]">
               <span className="mb-1 block font-sans text-xs font-semibold uppercase leading-[18px] tracking-[0.1em] text-muted">
                 Email

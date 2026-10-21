@@ -7,6 +7,10 @@ export function StructuredData() {
   const websiteId = `${homepage}#website`;
   const webpageId = `${homepage}#webpage`;
   const businessId = `${homepage}#business`;
+  const serviceAreas = [
+    siteConfig.business.primaryLocation.locality,
+    ...siteConfig.business.confirmedAdditionalServiceAreas,
+  ];
 
   const graph = {
     "@context": "https://schema.org",
@@ -36,21 +40,24 @@ export function StructuredData() {
         url: homepage,
         description: siteConfig.business.description,
         email: siteConfig.business.email,
+        telephone: siteConfig.business.phone.international,
         logo: absoluteUrl(siteConfig.seo.logoPath),
         image: absoluteUrl(siteConfig.seo.openGraphImagePath),
         sameAs: [siteConfig.business.facebook],
-        areaServed: {
-          "@type": "AdministrativeArea",
-          name: siteConfig.business.serviceArea,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: siteConfig.business.primaryLocation.locality,
+          addressRegion: siteConfig.business.primaryLocation.region,
+          addressCountry: siteConfig.business.primaryLocation.country,
+        },
+        areaServed: serviceAreas.map((area) => ({
+          "@type": "City",
+          name: area,
           containedInPlace: {
             "@type": "AdministrativeArea",
             name: siteConfig.business.primaryLocation.region,
-            containedInPlace: {
-              "@type": "Country",
-              name: siteConfig.business.primaryLocation.country,
-            },
           },
-        },
+        })),
         openingHoursSpecification: [
           {
             "@type": "OpeningHoursSpecification",
@@ -69,7 +76,10 @@ export function StructuredData() {
             itemOffered: {
               "@type": "Service",
               name: service,
-              areaServed: siteConfig.business.serviceArea,
+              areaServed: serviceAreas.map((area) => ({
+                "@type": "City",
+                name: area,
+              })),
             },
           })),
         },

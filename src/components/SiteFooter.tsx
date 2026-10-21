@@ -60,6 +60,12 @@ export function SiteFooter() {
               {siteConfig.business.email}
             </a>
             <a
+              href={siteConfig.business.phone.href}
+              className="font-sans text-base font-medium leading-[26px] text-primary-foreground"
+            >
+              {siteConfig.business.phone.display}
+            </a>
+            <a
               href={siteConfig.business.facebook}
               target="_blank"
               rel="noreferrer"

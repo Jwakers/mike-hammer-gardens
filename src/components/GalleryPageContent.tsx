@@ -256,6 +256,11 @@ export function GalleryPageContent() {
                   <h3 className="m-0 font-display text-xl font-medium leading-7 text-primary">
                     {featuredPhoto.title}
                   </h3>
+                  {featuredPhoto.location ? (
+                    <p className="mt-1 mb-0 font-sans text-xs font-semibold uppercase leading-4 tracking-label text-accent">
+                      {featuredPhoto.location}
+                    </p>
+                  ) : null}
                   <p className="mt-1.5 mb-0 font-sans text-[15px] leading-6 text-muted">
                     {featuredPhoto.description}
                   </p>
@@ -286,6 +291,11 @@ export function GalleryPageContent() {
                       <h3 className="m-0 font-sans text-[15px] font-semibold leading-[22px] text-primary">
                         {photo.title}
                       </h3>
+                      {photo.location ? (
+                        <p className="mt-1 mb-0 font-sans text-xs font-semibold uppercase leading-4 tracking-label text-accent">
+                          {photo.location}
+                        </p>
+                      ) : null}
                       <p className="mt-1 mb-0 font-sans text-sm leading-5 text-muted">
                         {photo.description}
                       </p>
