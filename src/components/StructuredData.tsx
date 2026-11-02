@@ -7,10 +7,10 @@ export function StructuredData() {
   const websiteId = `${homepage}#website`;
   const webpageId = `${homepage}#webpage`;
   const businessId = `${homepage}#business`;
-  const serviceAreas = [
-    siteConfig.business.primaryLocation.locality,
-    ...siteConfig.business.confirmedAdditionalServiceAreas,
-  ];
+  const county = siteConfig.business.primaryLocation.region;
+  const serviceAreas = siteConfig.business.serviceAreaGroups.flatMap(
+    (group) => group.areas,
+  );
 
   const graph = {
     "@context": "https://schema.org",
@@ -46,18 +46,23 @@ export function StructuredData() {
         sameAs: [siteConfig.business.facebook],
         address: {
           "@type": "PostalAddress",
-          addressLocality: siteConfig.business.primaryLocation.locality,
-          addressRegion: siteConfig.business.primaryLocation.region,
+          addressRegion: county,
           addressCountry: siteConfig.business.primaryLocation.country,
         },
-        areaServed: serviceAreas.map((area) => ({
-          "@type": "City",
-          name: area,
-          containedInPlace: {
+        areaServed: [
+          {
             "@type": "AdministrativeArea",
-            name: siteConfig.business.primaryLocation.region,
+            name: county,
           },
-        })),
+          ...serviceAreas.map((area) => ({
+            "@type": "Place",
+            name: area,
+            containedInPlace: {
+              "@type": "AdministrativeArea",
+              name: county,
+            },
+          })),
+        ],
         openingHoursSpecification: [
           {
             "@type": "OpeningHoursSpecification",
@@ -76,10 +81,10 @@ export function StructuredData() {
             itemOffered: {
               "@type": "Service",
               name: service,
-              areaServed: serviceAreas.map((area) => ({
-                "@type": "City",
-                name: area,
-              })),
+              areaServed: {
+                "@type": "AdministrativeArea",
+                name: county,
+              },
             },
           })),
         },

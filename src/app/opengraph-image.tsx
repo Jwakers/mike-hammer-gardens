@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 import { siteConfig } from "@/config/site";
 
 export const alt =
-  "Mike Hamer Gardens — landscaping and garden services in Stroud";
+  "Mike Hamer Gardens — landscaping and garden services in Gloucestershire";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -69,7 +69,7 @@ export default function OpenGraphImage() {
                 textTransform: "uppercase",
               }}
             >
-              Stroud · Gloucestershire
+              Gloucestershire
             </div>
             <div
               style={{

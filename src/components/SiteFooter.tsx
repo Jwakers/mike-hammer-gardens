@@ -30,7 +30,7 @@ export function SiteFooter() {
           </div>
           <p className="m-0 font-sans text-base leading-[26px] text-secondary">
             Landscaping, garden maintenance and outdoor improvements across
-            Stroud and the surrounding areas.
+            Gloucestershire.
           </p>
         </div>
 

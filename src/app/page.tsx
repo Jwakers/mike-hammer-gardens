@@ -70,7 +70,7 @@ const projects = [
     category: "Timber work",
     title: "Raised beds with a valley view",
     description:
-      "Timber sleeper beds built along the boundary, looking out over the Stroud hills.",
+      "Timber sleeper beds built along the boundary, looking out over the Gloucestershire hills.",
     image: "/images/site-work/hero-raised-beds-view.jpg",
     alt: "Timber raised garden beds overlooking a green valley",
     imagePosition: "50% 35%",
@@ -127,7 +127,8 @@ const steps = [
 const faqs = [
   {
     question: "Which areas does Mike Hamer Gardens cover?",
-    answer: `Mike is based in Stroud and works across ${siteConfig.business.confirmedAdditionalServiceAreas.join(", ")} and nearby areas. Get in touch with your postcode to confirm availability.`,
+    answer:
+      "Mike works across Gloucestershire. Towns and villages in every part of the county are listed above. Get in touch with your postcode to confirm availability.",
   },
   {
     question: "What kind of garden work does Mike take on?",
@@ -177,17 +178,17 @@ export default function Home() {
         <div className="flex flex-col justify-center gap-5 lg:gap-7">
           <div className="flex items-center gap-2.5 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-accent max-[560px]:text-[12px] max-[560px]:tracking-[0.1em]">
             <span className="h-px w-6 shrink-0 bg-accent" aria-hidden="true" />
-            <span>Stroud · Gloucestershire</span>
+            <span>Gloucestershire</span>
           </div>
           <h1 className="m-0 font-display text-[34px] font-medium leading-[1.15] tracking-tight text-foreground lg:text-[clamp(48px,6vw,56px)] lg:leading-[1.1]">
-            Landscaping and garden services in Stroud.
+            Landscaping and garden services in Gloucestershire.
           </h1>
           <p
             className={`${bodyMuted} max-[560px]:text-base lg:text-lg lg:leading-[30px]`}
           >
             From patios and fencing to turfing, garden clearance and ongoing
             maintenance, Mike Hamer Gardens provides reliable outdoor
-            improvements across Stroud and the surrounding areas.
+            improvements across Gloucestershire.
           </p>
           <div className="flex flex-wrap gap-4 max-[560px]:flex-col">
             <HashLink href="#contact" className={primaryButton}>
@@ -214,7 +215,7 @@ export default function Home() {
         <div className="order-first flex min-w-0 flex-col gap-3 max-[560px]:order-none lg:order-none">
           <div className="hidden items-center justify-between gap-3 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-muted lg:flex">
             <span>Project · Tiered garden refresh</span>
-            <span>Stroud</span>
+            <span>Gloucestershire</span>
           </div>
           <div className="relative min-h-[240px] overflow-hidden lg:min-h-[480px]">
             <Image
@@ -240,7 +241,7 @@ export default function Home() {
             <p className={`${bodyMuted} mt-4`}>
               From complete garden improvements to regular maintenance, Mike
               provides practical, reliable help for outdoor spaces across
-              Stroud.
+              Gloucestershire.
             </p>
           </div>
           <HashLink href="#contact" className={textLink}>
@@ -461,8 +462,7 @@ export default function Home() {
               Hi, I&apos;m Mike. I&apos;m a garden landscaper with{" "}
               {siteConfig.business.experienceYears} years of industry
               experience, providing landscaping, outdoor improvements and
-              reliable garden maintenance across Stroud and the surrounding
-              areas.
+              reliable garden maintenance across Gloucestershire.
             </p>
             <p className={bodyMuted}>
               Whether you need a completely new look or a seasonal tidy-up, I
@@ -518,45 +518,57 @@ export default function Home() {
 
       <section
         id="service-area"
-        className={`${sectionShell} grid grid-cols-1 items-center gap-10 bg-primary py-[72px] lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:gap-16 lg:py-20`}
+        className={`${sectionShell} bg-primary py-[72px] lg:py-20`}
       >
-        <div>
-          <h2 className="m-0 font-display text-[clamp(34px,4vw,40px)] font-medium leading-[1.2] tracking-tight text-primary-foreground">
-            Landscaping services across Stroud
-          </h2>
-          <p className="mt-5 m-0 font-sans text-[17px] leading-body text-secondary max-[560px]:text-base max-[560px]:leading-[1.55]">
-            Mike Hamer Gardens provides professional landscaping, garden
-            maintenance and outdoor improvements throughout Stroud and the
-            surrounding areas.
-          </p>
-          <p className="mt-5 border-t border-secondary/35 pt-3 font-sans text-base leading-[26px] text-primary-foreground opacity-80">
-            Based in Stroud and serving{" "}
-            {siteConfig.business.confirmedAdditionalServiceAreas.join(", ")}{" "}
-            and nearby areas. Contact Mike with your postcode to confirm
-            availability.
-          </p>
-        </div>
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:gap-16">
+          <div>
+            <h2 className="m-0 font-display text-[clamp(34px,4vw,40px)] font-medium leading-[1.2] tracking-tight text-primary-foreground">
+              Landscaping services across Gloucestershire
+            </h2>
+            <p className="mt-5 m-0 font-sans text-[17px] leading-body text-secondary max-[560px]:text-base max-[560px]:leading-[1.55]">
+              Mike Hamer Gardens provides professional landscaping, garden
+              maintenance and outdoor improvements throughout Gloucestershire.
+            </p>
+            <p className="mt-5 border-t border-secondary/35 pt-3 font-sans text-base leading-[26px] text-primary-foreground opacity-80">
+              Towns and villages across the county are listed below. Contact
+              Mike with your postcode to confirm availability.
+            </p>
+          </div>
 
-        <div className="flex min-h-[220px] min-w-0 items-stretch justify-stretch overflow-hidden lg:min-h-[280px]">
-          <div className="relative min-h-[220px] w-full overflow-hidden bg-[#1a2e24] lg:min-h-[280px]">
-            <Image
-              src="/images/stroud-aerial.jpg"
-              alt="Aerial view of Stroud and the surrounding countryside"
-              fill
-              className={coverImage}
-              style={{ objectPosition: "50% 45%" }}
-              sizes="(max-width: 900px) 100vw, 48vw"
-            />
-            <div className="pointer-events-none absolute inset-0 flex items-end justify-end gap-2.5 bg-gradient-to-r from-primary/55 via-primary/15 to-primary/25 px-6 py-5">
-              <span
-                className="size-2.5 shrink-0 rounded-full bg-accent"
-                aria-hidden="true"
+          <div className="flex min-h-[220px] min-w-0 items-stretch justify-stretch overflow-hidden lg:min-h-[280px]">
+            <div className="relative min-h-[220px] w-full overflow-hidden bg-[#1a2e24] lg:min-h-[280px]">
+              <Image
+                src="/images/stroud-aerial.jpg"
+                alt="Aerial view of Gloucestershire countryside"
+                fill
+                className={coverImage}
+                style={{ objectPosition: "50% 45%" }}
+                sizes="(max-width: 900px) 100vw, 48vw"
               />
-              <span className="font-sans text-xs font-semibold uppercase leading-4 tracking-label text-primary-foreground">
-                Stroud
-              </span>
+              <div className="pointer-events-none absolute inset-0 flex items-end justify-end gap-2.5 bg-gradient-to-r from-primary/55 via-primary/15 to-primary/25 px-6 py-5">
+                <span
+                  className="size-2.5 shrink-0 rounded-full bg-accent"
+                  aria-hidden="true"
+                />
+                <span className="font-sans text-xs font-semibold uppercase leading-4 tracking-label text-primary-foreground">
+                  Gloucestershire
+                </span>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div className="mt-14 grid grid-cols-1 gap-x-12 gap-y-10 border-t border-secondary/35 pt-10 lg:grid-cols-2 xl:grid-cols-3">
+          {siteConfig.business.serviceAreaGroups.map((group) => (
+            <div key={group.district} className="min-w-0">
+              <h3 className="m-0 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-secondary">
+                {group.district}
+              </h3>
+              <p className="mt-4 mb-0 font-sans text-sm leading-6 text-primary-foreground">
+                {group.areas.join(" · ")}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 

@@ -9,7 +9,7 @@
 - [ ] Confirm whether every project photograph shows Mike's work. Supply accurate project title, service, description, and location only where known and approved.
 - [ ] Replace the raised-bed about image if it is stock or is not Mike's work.
 - [ ] Supply genuine testimonials and permission for the displayed attribution and any location/service detail.
-- [ ] Confirm any additional towns or villages genuinely served, then add them to `confirmedAdditionalServiceAreas` in `src/config/site.ts`.
+- [ ] Confirm any additional towns or villages genuinely served, then add them to `serviceAreaGroups` in `src/config/site.ts`.
 - [ ] Confirm whether a public business address exists and whether Mike explicitly permits publication. Never expose a private residential address by default.
 - [ ] Confirm the final logo and approve the generated Open Graph sharing image.
 - [ ] Provide a privacy-policy URL and confirm Formspree processing, photograph handling, retention, and deletion practices.
@@ -61,7 +61,7 @@ No legacy paths or confirmed previous public domain were present in this reposit
 - **Projects — `project-stone-path.jpg`:** use a confirmed completed paving project in a square or portrait crop. Confirm the paving type and setting.
 - **Projects — `project-gate.jpg`:** use a confirmed fencing or turf project in a portrait crop. Confirm the main visible work.
 - **About — `about-mike.jpg`:** use Mike at work or a genuine garden detail in a crop that tolerates the current narrow column. Identify a person/action only with consent; otherwise describe the visible garden feature.
-- **Service area — `stroud-aerial.jpg`:** use a licensed, accurate Stroud context image in a wide crop (about 16:9). Confirm the place shown and image licence.
+- **Service area — `stroud-aerial.jpg`:** use a licensed countryside image from Gloucestershire in a wide crop (about 16:9). Confirm the place shown and image licence.
 
 ## 6. Post-deployment validation
 

@@ -55,7 +55,7 @@ export const metadata: Metadata = {
               url: siteConfig.seo.openGraphImagePath,
               width: 1200,
               height: 630,
-              alt: `${siteConfig.business.name} — landscaping and garden services in Stroud`,
+              alt: `${siteConfig.business.name} — landscaping and garden services in Gloucestershire`,
             },
           ],
         }
