@@ -1,11 +1,22 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { EnquiryForm } from "@/components/EnquiryForm";
+import { ContactSection } from "@/components/ContactSection";
 import { HashLink } from "@/components/HashLink";
 import { StructuredData } from "@/components/StructuredData";
-import { siteConfig } from "@/config/site";
+import { indexingRobots, siteConfig, siteUrl } from "@/config/site";
 import { testimonials } from "@/config/testimonials";
+
+export const metadata: Metadata = {
+  title: siteConfig.seo.title,
+  description: siteConfig.seo.description,
+  robots: indexingRobots,
+};
+
+function serviceAnchor(name: string): string | undefined {
+  return ({ "Patio paving": "patios-and-paving", Fencing: "fencing", Turfing: "turfing", "Dry stone walling": "dry-stone-walling", "Garden clearance": "garden-clearance", "Seasonal garden maintenance": "garden-maintenance" } as Record<string, string>)[name];
+}
 
 type FeaturedServiceItem = {
   name: string;
@@ -20,6 +31,7 @@ const featuredService = {
     { name: "Landscaping", tag: "Core" },
     { name: "Patio paving", tag: "Core" },
     { name: "Fencing", tag: "Core" },
+    { name: "Dry stone walling" },
     { name: "Turfing" },
     { name: "Grass seeding" },
   ] satisfies FeaturedServiceItem[],
@@ -126,9 +138,9 @@ const steps = [
 
 const faqs = [
   {
-    question: "Which areas does Mike Hamer Gardens cover?",
+    question: "What areas do you cover?",
     answer:
-      "Mike works across Gloucestershire. Towns and villages in every part of the county are listed above. Get in touch with your postcode to confirm availability.",
+      "I cover the whole of Gloucestershire, including Stroud and the Five Valleys, Gloucester, Cheltenham and the Cotswolds. If you're not sure, send your postcode and I'll confirm.",
   },
   {
     question: "What kind of garden work does Mike take on?",
@@ -169,6 +181,8 @@ const coverImage = "object-cover";
 export default function Home() {
   return (
     <main id="main-content" tabIndex={-1} className="min-h-screen min-w-0">
+      {/* Render explicitly: Next metadata removes the trailing slash from origin-only canonicals. */}
+      <link rel="canonical" href={siteUrl.href} />
       <StructuredData />
 
       <section
@@ -178,17 +192,17 @@ export default function Home() {
         <div className="flex flex-col justify-center gap-5 lg:gap-7">
           <div className="flex items-center gap-2.5 font-sans text-xs font-semibold uppercase leading-[18px] tracking-label text-accent max-[560px]:text-[12px] max-[560px]:tracking-[0.1em]">
             <span className="h-px w-6 shrink-0 bg-accent" aria-hidden="true" />
-            <span>Gloucestershire</span>
+            <span>Stroud · Gloucester · Gloucestershire</span>
           </div>
           <h1 className="m-0 font-display text-[34px] font-medium leading-[1.15] tracking-tight text-foreground lg:text-[clamp(48px,6vw,56px)] lg:leading-[1.1]">
-            Landscaping and garden services in Gloucestershire.
+            Landscaping and garden services in Stroud and across Gloucestershire
           </h1>
           <p
             className={`${bodyMuted} max-[560px]:text-base lg:text-lg lg:leading-[30px]`}
           >
             From patios and fencing to turfing, garden clearance and ongoing
             maintenance, Mike Hamer Gardens provides reliable outdoor
-            improvements across Gloucestershire.
+            improvements across Stroud and the Five Valleys, Gloucester and the rest of Gloucestershire.
           </p>
           <div className="flex flex-wrap gap-4 max-[560px]:flex-col">
             <HashLink href="#contact" className={primaryButton}>
@@ -271,6 +285,8 @@ export default function Home() {
               {featuredService.items.map((item) => (
                 <li
                   key={item.name}
+                  id={serviceAnchor(item.name)}
+                  style={{ scrollMarginTop: 96 }}
                   className="flex min-h-[55px] items-center justify-between gap-4 border-b border-border font-sans text-base font-medium leading-[26px] text-foreground last:border-b-0"
                 >
                   <span>{item.name}</span>
@@ -300,6 +316,8 @@ export default function Home() {
                   {group.items.map((item) => (
                     <li
                       key={item}
+                      id={serviceAnchor(item)}
+                      style={{ scrollMarginTop: 96 }}
                       className="flex min-h-[55px] items-center justify-between gap-4 border-b border-border font-sans text-base font-medium leading-[26px] text-foreground last:border-b-0"
                     >
                       {item}
@@ -459,10 +477,12 @@ export default function Home() {
           </h2>
           <div className="flex flex-col gap-4">
             <p className={bodyMuted}>
-              Hi, I&apos;m Mike. I&apos;m a garden landscaper with{" "}
-              {siteConfig.business.experienceYears} years of industry
-              experience, providing landscaping, outdoor improvements and
-              reliable garden maintenance across Gloucestershire.
+              Hi, I&apos;m Mike. I&apos;m a Gloucestershire landscape gardener with{" "}
+              {siteConfig.business.experienceYears} years of industry experience.
+              I provide landscaping, outdoor improvements and reliable garden
+              maintenance across the county, and I do a lot of work around Stroud,
+              so I&apos;m used to the steep, sloping gardens and Cotswold stone you
+              find in the valleys.
             </p>
             <p className={bodyMuted}>
               Whether you need a completely new look or a seasonal tidy-up, I
@@ -523,23 +543,30 @@ export default function Home() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:gap-16">
           <div>
             <h2 className="m-0 font-display text-[clamp(34px,4vw,40px)] font-medium leading-[1.2] tracking-tight text-primary-foreground">
-              Landscaping services across Gloucestershire
+              Landscaper in Stroud, Gloucester and across Gloucestershire
             </h2>
             <p className="mt-5 m-0 font-sans text-[17px] leading-body text-secondary max-[560px]:text-base max-[560px]:leading-[1.55]">
-              Mike Hamer Gardens provides professional landscaping, garden
-              maintenance and outdoor improvements throughout Gloucestershire.
+              I work throughout Gloucestershire, with a lot of jobs in and around
+              Stroud and the Five Valleys: Nailsworth, Stonehouse, Painswick,
+              Minchinhampton, Chalford and Rodborough. I also cover Gloucester,
+              Quedgeley, Cheltenham and the Cotswolds. Not sure if I cover you?
+              Send me your postcode.
             </p>
-            <p className="mt-5 border-t border-secondary/35 pt-3 font-sans text-base leading-[26px] text-primary-foreground opacity-80">
-              Towns and villages across the county are listed below. Contact
-              Mike with your postcode to confirm availability.
+            <h3 className="mt-5 mb-0 font-display text-2xl font-medium text-primary-foreground">
+              Stroud
+            </h3>
+            <p className="mt-3 mb-0 font-sans text-base leading-[26px] text-primary-foreground">
+              From hard landscaping to regular garden maintenance, I work across
+              Stroud and the Five Valleys. <Link href="/landscaper-stroud" className="underline underline-offset-4">Find out about landscaping in Stroud</Link>.
             </p>
           </div>
 
           <div className="flex min-h-[220px] min-w-0 items-stretch justify-stretch overflow-hidden lg:min-h-[280px]">
             <div className="relative min-h-[220px] w-full overflow-hidden bg-[#1a2e24] lg:min-h-[280px]">
+              {/* TODO: confirm photo is Stroud */}
               <Image
                 src="/images/stroud-aerial.jpg"
-                alt="Aerial view of Gloucestershire countryside"
+                alt="Aerial view of Stroud and the Five Valleys, Gloucestershire"
                 fill
                 className={coverImage}
                 style={{ objectPosition: "50% 45%" }}
@@ -606,58 +633,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        id="contact"
-        className={`${sectionShell} grid grid-cols-1 items-start gap-10 py-[72px] lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-16 lg:py-24`}
-      >
-        <div className="flex flex-col gap-7">
-          <div>
-            <h2 className={sectionHeading}>Ready to improve your garden?</h2>
-            <p className={`${bodyMuted} mt-4`}>
-              Tell Mike about the work you have in mind and arrange a friendly
-              conversation or quotation.
-            </p>
-          </div>
-
-          <div className="border-t border-border">
-            <div className="border-b border-border py-[18px]">
-              <span className="mb-1 block font-sans text-xs font-semibold uppercase leading-[18px] tracking-[0.1em] text-muted">
-                Phone
-              </span>
-              <a
-                href={siteConfig.business.phone.href}
-                className="font-sans text-base font-medium leading-6 text-foreground"
-              >
-                {siteConfig.business.phone.display}
-              </a>
-            </div>
-            <div className="border-b border-border py-[18px]">
-              <span className="mb-1 block font-sans text-xs font-semibold uppercase leading-[18px] tracking-[0.1em] text-muted">
-                Email
-              </span>
-              <a
-                href={`mailto:${siteConfig.business.email}`}
-                className="font-sans text-base font-medium leading-6 text-foreground"
-              >
-                {siteConfig.business.email}
-              </a>
-            </div>
-            <div className="py-[18px]">
-              <span className="mb-1 block font-sans text-xs font-semibold uppercase leading-[18px] tracking-[0.1em] text-muted">
-                Working hours
-              </span>
-              <p className="m-0 font-sans text-base font-medium leading-6 text-foreground">
-                {siteConfig.business.openingHours.display}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <EnquiryForm
-          formId={siteConfig.form.formspreeId}
-          allowFileUploads={siteConfig.form.allowFileUploads}
-        />
-      </section>
+      <ContactSection />
     </main>
   );
 }

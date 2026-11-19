@@ -9,6 +9,7 @@ const exploreLinks = [
   { href: "/", label: "Home" },
   { href: "/#services", label: "Services" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/landscaper-stroud", label: "Landscaper in Stroud" },
   { href: "/#contact", label: "Contact" },
 ] as const;
 
@@ -28,6 +29,10 @@ export function SiteFooter() {
               Mike Hamer Gardens
             </span>
           </div>
+          {/* TODO: match GBP name/address exactly */}
+          <p className="mb-3 font-sans text-base leading-[26px] text-secondary">
+            {siteConfig.business.primaryLocation.locality}, {siteConfig.business.primaryLocation.region}
+          </p>
           <p className="m-0 font-sans text-base leading-[26px] text-secondary">
             Landscaping, garden maintenance and outdoor improvements across
             Gloucestershire.

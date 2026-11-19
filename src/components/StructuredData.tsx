@@ -43,9 +43,11 @@ export function StructuredData() {
         telephone: siteConfig.business.phone.international,
         logo: absoluteUrl(siteConfig.seo.logoPath),
         image: absoluteUrl(siteConfig.seo.openGraphImagePath),
+        // TODO: add the GBP/Google Maps URL once supplied.
         sameAs: [siteConfig.business.facebook],
         address: {
           "@type": "PostalAddress",
+          addressLocality: siteConfig.business.primaryLocation.locality,
           addressRegion: county,
           addressCountry: siteConfig.business.primaryLocation.country,
         },
@@ -55,7 +57,7 @@ export function StructuredData() {
             name: county,
           },
           ...serviceAreas.map((area) => ({
-            "@type": "Place",
+            "@type": area === "Stroud" || area === "Gloucester" ? "City" : "Place",
             name: area,
             containedInPlace: {
               "@type": "AdministrativeArea",

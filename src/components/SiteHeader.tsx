@@ -79,7 +79,7 @@ export function SiteHeader() {
 
   const isActive = (href: string) => {
     if (href === "/gallery") return isGallery;
-    if (href === "/") return !isGallery;
+    if (href === "/") return pathname === "/";
     return false;
   };
 

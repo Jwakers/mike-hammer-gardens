@@ -2,10 +2,10 @@
 
 ## 1. Blocking information
 
-- [ ] Confirm the final canonical production domain and set `SITE_URL` to its HTTPS origin.
-- [ ] Add the confirmed custom domain to the existing Vercel project. At audit time it had only Vercel aliases and was not marked live, so no alias has been adopted as the business canonical.
+- [x] Use the confirmed canonical `https://www.mikehamergardens.co.uk/` in site configuration.
+- [ ] Verify the existing custom domain in the Vercel project after deployment.
 - [ ] On non-Vercel hosting, set `SITE_ENV=production`. Vercel uses `VERCEL_ENV=production` automatically.
-- [ ] Choose the preferred hostname (`www` or non-`www`) and redirect the other hostname, HTTP, and any trailing-slash duplicate to it at the host/CDN.
+- [ ] Verify that non-`www` and HTTP redirect to `https://www.mikehamergardens.co.uk/` at the host/CDN.
 - [ ] Confirm whether every project photograph shows Mike's work. Supply accurate project title, service, description, and location only where known and approved.
 - [ ] Replace the raised-bed about image if it is stock or is not Mike's work.
 - [ ] Supply genuine testimonials and permission for the displayed attribution and any location/service detail.
@@ -32,7 +32,7 @@
 - [ ] Submit/import the sitemap and run Bing Site Scan.
 - [ ] Review crawl and SEO reports.
 
-IndexNow is optional and is not implemented because this is a small, rarely changing single-page site.
+IndexNow is optional and is not implemented because this is a small, rarely changing site.
 
 ## 3. Google Business Profile
 
@@ -51,7 +51,7 @@ IndexNow is optional and is not implemented because this is a small, rarely chan
 - [ ] Test HTTP/HTTPS, `www`/non-`www`, `/home`, old paths, query-string variants, 404s, and redirect chains.
 - [ ] Update important directory listings and backlinks where practical.
 
-No legacy paths or confirmed previous public domain were present in this repository, so redirects have not been guessed.
+No legacy paths have been supplied, so redirects have not been guessed.
 
 ## 5. Final photography checklist
 
@@ -65,7 +65,7 @@ No legacy paths or confirmed previous public domain were present in this reposit
 
 ## 6. Post-deployment validation
 
-- [ ] Confirm `/`, `/robots.txt`, `/sitemap.xml`, `/opengraph-image`, icons, and all images return 200.
+- [ ] Confirm `/`, `/landscaper-stroud`, `/favicon.ico`, `/robots.txt`, `/sitemap.xml`, `/opengraph-image`, icons, and all images return 200.
 - [ ] View source and confirm title, description, canonical, index/follow, Open Graph, Twitter, one H1, contact details, anchor links, and JSON-LD.
 - [ ] Confirm preview/staging responses contain `noindex, nofollow` and their robots file disallows crawling.
 - [ ] Keep Vercel Authentication enabled for non-custom-domain deployments where practical; it was enabled for all deployments except custom domains at audit time.
@@ -80,3 +80,12 @@ No legacy paths or confirmed previous public domain were present in this reposit
 - [ ] Monitor form delivery, spam, upload failures, and mobile conversion friction.
 - [ ] Track uptime, 404s, redirects, and image errors.
 - [ ] Re-test metadata and structured data after domain, business details, testimonials, or services change.
+
+## Stroud page confirmations
+
+- [ ] Confirm exact Google Business Profile name and Quedgeley locality; supply the public GBP/Maps URL for `sameAs`. Keep any private street/postcode hidden.
+- [ ] Confirm the short town list and that `stroud-aerial.jpg` shows Stroud.
+- [ ] Confirm locations and details for the two project placeholders on `/landscaper-stroud`; identify the Sheepscombe paving photo if present.
+- [ ] Confirm whether quotes are free before adding “Free quotes.”
+- [ ] Inspect `/landscaper-stroud` and its FAQ/Breadcrumb JSON-LD after deployment; request indexing in Search Console.
+- [ ] Confirm an unknown URL returns 404, has its own title and no homepage canonical or index/follow directive.

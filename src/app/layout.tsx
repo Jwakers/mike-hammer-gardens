@@ -3,7 +3,7 @@ import { Manrope, Newsreader } from "next/font/google";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { siteConfig, siteUrl, isIndexable } from "@/config/site";
+import { siteConfig, siteUrl } from "@/config/site";
 
 import "./globals.css";
 
@@ -23,24 +23,6 @@ export const metadata: Metadata = {
   applicationName: siteConfig.business.name,
   title: siteConfig.seo.title,
   description: siteConfig.seo.description,
-  ...(siteUrl
-    ? {
-        alternates: {
-          canonical: "/",
-        },
-      }
-    : {}),
-  robots: {
-    index: isIndexable,
-    follow: isIndexable,
-    googleBot: {
-      index: isIndexable,
-      follow: isIndexable,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
   openGraph: {
     type: "website",
     locale: siteConfig.seo.locale,
@@ -69,6 +51,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32", type: "image/x-icon" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
