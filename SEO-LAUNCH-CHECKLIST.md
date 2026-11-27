@@ -89,3 +89,11 @@ No legacy paths have been supplied, so redirects have not been guessed.
 - [ ] Confirm whether quotes are free before adding “Free quotes.”
 - [ ] Inspect `/landscaper-stroud` and its FAQ/Breadcrumb JSON-LD after deployment; request indexing in Search Console.
 - [ ] Confirm an unknown URL returns 404, has its own title and no homepage canonical or index/follow directive.
+
+## Patios and hard landscaping page
+
+- [ ] After deployment, inspect `/patios-hard-landscaping-stroud` in Search Console and request indexing.
+- [ ] Resubmit `https://www.mikehamergardens.co.uk/sitemap.xml` and confirm it includes the new URL.
+- [ ] Verify the page's canonical, Service, BreadcrumbList and four FAQ entries on production. The Service provider must reference `https://www.mikehamergardens.co.uk/#business`.
+- [ ] Confirm with Mike before adding porcelain or concrete paving, materials supplied, typical lead times or free quotes. Do not publish prices.
+- [ ] Confirm project locations before naming any photographed job as being in Stroud or Sheepscombe.

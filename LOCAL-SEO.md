@@ -31,7 +31,7 @@ The site is live on the `www` hostname. The non-`www` and HTTP versions redirect
 to it, and the live robots file allows crawling.
 
 - Keep `https://www.mikehamergardens.co.uk/sitemap.xml` submitted.
-- Check that `/`, `/landscaper-stroud` and `/gallery` are indexed. Request indexing only when needed.
+- Check that `/`, `/landscaper-stroud`, `/patios-hard-landscaping-stroud` and `/gallery` are indexed. Request indexing only when needed.
 - Review **Performance → Search results → Queries** and **Pages** quarterly.
 - Compare the last three months with the previous period.
 - Note local queries that already receive impressions, especially combinations

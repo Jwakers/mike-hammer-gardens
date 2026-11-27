@@ -289,7 +289,9 @@ export default function Home() {
                   style={{ scrollMarginTop: 96 }}
                   className="flex min-h-[55px] items-center justify-between gap-4 border-b border-border font-sans text-base font-medium leading-[26px] text-foreground last:border-b-0"
                 >
-                  <span>{item.name}</span>
+                  {item.name === "Patio paving" ? (
+                    <Link href="/patios-hard-landscaping-stroud" className="underline underline-offset-4 transition-colors hover:text-accent">{item.name}</Link>
+                  ) : <span>{item.name}</span>}
                   {item.tag ? (
                     <small className="font-sans text-xs font-semibold uppercase leading-[18px] tracking-[0.08em] text-accent">
                       {item.tag}

@@ -29,10 +29,10 @@ export const metadata: Metadata = {
 };
 
 const services: { title: string; description: string; href?: string }[] = [
-  { title: "Patios and paving", description: "Create a practical space to sit, eat and enjoy your garden. Mike lays patio paving as part of hard landscaping work in Stroud." },
+  { title: "Patios and paving", description: "Create a practical space to sit, eat and enjoy your garden. Mike lays patio paving as part of hard landscaping work in Stroud.", href: "/patios-hard-landscaping-stroud" },
   { title: "Fencing", description: "New fencing can make a garden more private and give its boundaries a tidy finish. Mike takes on fencing work, including gardens on slopes." },
   { title: "Turfing", description: "Refresh a worn lawn or finish a garden transformation with new turf. Mike also offers grass seeding." },
-  { title: "Dry stone walling", description: "Mike builds and repairs dry stone walls, working with the stone and character of the garden." },
+  { title: "Dry stone walling", description: "Mike builds and repairs dry stone walls, working with the stone and character of the garden.", href: "/patios-hard-landscaping-stroud" },
   { title: "Garden clearance", description: "Clear overgrown borders and make an untidy garden usable again. Mike can help with a one-off tidy-up or clearance before further work." },
   { title: "And much more", description: "Mike also offers garden maintenance, grass and hedge cutting, pressure washing, garden repairs and other outdoor improvements. Get in touch to discuss what your garden needs.", href: "/#services" },
 ];
@@ -102,9 +102,13 @@ export default function StroudPage() {
         <div className="mt-10 grid grid-cols-1 gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <article key={service.title} className="flex flex-col items-start gap-4 border-t border-border py-8">
-              <h3 className="m-0 font-display text-2xl font-medium leading-[30px] text-foreground">{service.title}</h3>
+              <h3 className="m-0 font-display text-2xl font-medium leading-[30px] text-foreground">
+                {service.href === "/patios-hard-landscaping-stroud" ? (
+                  <Link href={service.href} className="underline underline-offset-4 transition-colors hover:text-accent">{service.title}</Link>
+                ) : service.title}
+              </h3>
               <p className={bodyMuted}>{service.description}</p>
-              {service.href ? (
+              {service.href === "/#services" ? (
                 <HashLink href={service.href} className={`${textLink} mt-auto`}>
                   See all services
                 </HashLink>
